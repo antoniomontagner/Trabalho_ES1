@@ -7,7 +7,7 @@ from defs import nomequant
 
 
 def data_center ():
-    data = []             #VAI ARMAZENAR OS DADOS DO USUARIO E PORTANDO SUAS RECEITAS TAMBEM
+    data = []             #  VAI ARMAZENAR OS DADOS DO USUARIO E PORTANDO SUAS RECEITAS TAMBEM
     while True :
         comand = input(f"""
     Sistema De Cadastro:

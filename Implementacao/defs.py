@@ -126,7 +126,7 @@ def parametros():
 
     return nome,palavras_chave,doce_salgado,star,hot_cold,porc,n_ingredientes
 
-def nomequant(n_ingredientes):
+def nomequant(n_ingredientes):      # 
     lis = []
 
     for i in range(n_ingredientes):
