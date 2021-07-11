@@ -1,5 +1,5 @@
 class Comida:
-    def __init__ (self,nome,palavras_chave,doce_salgado,avaliacoes,glutem,porc,nomequant):
+    def __init__ (self,nome,palavras_chave,doce_salgado,avaliacoes,glutem,porcoes,nomequant):
         self.nome = nome
         self.palavras_crave = palavras_chave
         self.doce_salgado = doce_salgado
@@ -7,7 +7,7 @@ class Comida:
         self.media_avaliacao = 0
         self.glutem = glutem
         #self.temp = temp
-        self.porcoes = porc
+        self.porcoes = porcoes
         self.nomequant = nomequant      # lista de ingredientes
     
     def retorno (self):

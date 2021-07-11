@@ -53,16 +53,17 @@ def parametros():
 #tempo
     palavras_chave = []
     while 0>=len(palavras_chave) or 100>=len(palavras_chave) :
-        palavra = input(f"""
+        comand = input(f"""
         {"-="*30}
-            Inserira a palavra chave
+            1 -Inserir palavra chave
 
-            caso queira sair digite 0
+            0 - Exit
         {"-="*30}
             Resposta: """).upper()
-        if palavra != '0':
+        if comand == '1':
+            palavra = input("\n Palavra chave: ")
             palavras_chave.append(palavra)
-        elif palavra == '0':
+        elif comand == '0':
             break
         else:
             print("Input inválido. ")
