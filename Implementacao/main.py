@@ -145,7 +145,7 @@ def receita(lst,y):
 
         if comando == "A":
             print("-="*30)
-            q,w,e,r,t,y,u=parametros()     #funcao valores
+            nome,palavras_chave,doce_salgado,star,hot_cold,porc,nomequant =parametros()     #funcao valores
             if len(lista) >= 1:
                 a = ""
                 for i in range(len(lista)):
@@ -156,12 +156,12 @@ def receita(lst,y):
                     print(" ~~ Nome já existente ~~ ")
                 else:
                     ingre = nomequant(u)           #funcao que retorna uma lista dos ingredientes que vai usar
-                    food = Comida(q,w,e,r,t,y,ingre)
+                    food = Comida(nome,palavras_chave,doce_salgado,star,hot_cold,porc,nomequant,ingre)
                     lista.append(food)
             
         elif comando == "B":
             print("-="*30)
-            q,w,e,r,t,y,u=parametros()     #funcao valores
+            nome,palavras_chave,doce_salgado,star,hot_cold,porc,nomequant =parametros()    #funcao valores
             if len(lista) >= 1:
                 a = ""
                 for i in range(len(lista)):

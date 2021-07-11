@@ -49,15 +49,26 @@ def parametros():
 #nome
     nome = input("Nome da comida: ")
 
+
+#tempo
+    palavras_chave = []
+    while 0>=len(palavras_chave) or 100>=len(palavras_chave) :
+        palavra = input(f"""
+        {"-="*30}
+            Inserira a palavra chave
+
+            caso queira sair digite 0
+        {"-="*30}
+            Resposta: """).upper()
+        if palavra != '0':
+            palavras_chave.append(palavra)
+        elif palavra == '0':
+            break
+        else:
+            print("Input inválido. ")
+
 #doce ou salgado
-    doce_salgado = input(f"""
-{"-="*30}
-        O comida é:   
-        
-            A - Doce
-            B - Salgado
-{"-="*30}
-        Resposta: """).upper()
+    doce_salgado = ''
     while doce_salgado != "A" and doce_salgado != "B":
         doce_salgado = input(f"""
 {"-="*30}
@@ -70,13 +81,7 @@ def parametros():
 
 
 #estrelas
-    star = input(f"""
-{"-="*30}
-    AVALIAÇÕES da receita:
-        A - ate 3 estrelas
-        B - mais de 3 estrelas
-{"-="*30}
-    Resposta:""").upper()
+    star = ''
     while star != "A" and star != "B":
         star = input(f"""
 {"-="*30}
@@ -88,13 +93,7 @@ def parametros():
 
 
 #quente ou frio
-    hot_cold = input(f"""
-{"-="*30}
-    A receita é:
-        A - Quente
-        B - Frio
-{"-="*30}
-    Resposta: """).upper()
+    hot_cold = ''
     while hot_cold != "A" and hot_cold != "B":
         hot_cold = input(f"""
 {"-="*30}
@@ -103,32 +102,9 @@ def parametros():
         B - Frio
 {"-="*30}
     Resposta: """).upper()
-#tempo
-    temp = input(f"""
-{"-="*30}
-    Tempo de preparo:
-        A - menos de 30 minutos
-        B - mais de 30 minutos 
-{"-="*30}
-    Resposta: """).upper()
-    while temp != "A" and temp != "B":
-        temp = input(f"""
-{"-="*30}
-    Tempo de preparo:
-        A - menos de 30 minutos
-        B - mais de 30 minutos 
-{"-="*30}
-    Resposta: """).upper()
 
 #porcoes
-    porc = input(f"""
-{"-="*30}
-    Porção geradas:
-    
-        A - ate de 2 pessoas
-        B - mais de 2 pessoas 
-{"-="*30}
-    Resposta: """).upper()
+    porc = ''
     while porc != "A" and porc != "B":
         porc = input(f"""
 {"-="*30}
@@ -148,7 +124,7 @@ def parametros():
             print("ERRO. Você não digitou um número!")
 
 
-    return nome,doce_salgado,star,hot_cold,temp,porc,n_ingredientes
+    return nome,palavras_chave,doce_salgado,star,hot_cold,porc,n_ingredientes
 
 def nomequant(n_ingredientes):
     lis = []

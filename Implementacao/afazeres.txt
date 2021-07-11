@@ -1,0 +1,8 @@
+pesquisa por palavra chave
+
+associar pesquisa a palavras chaves
+
+implementar avaliacao
+implementar denuncia
+
+lista de administrador, uma senha + PIN
