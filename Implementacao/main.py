@@ -1,13 +1,14 @@
 from receita import Bolo
 from receita import Comida
 from user import User
+from user import Admin
+import bd
 from defs import parametros
 from defs import tabela
 from defs import nomequant
 
-
-def data_center ():
-    data = []             #VAI ARMAZENAR OS DADOS DO USUARIO E PORTANDO SUAS RECEITAS TAMBEM
+def email_center ():
+    email = []             #VAI ARMAZENAR OS DADOS DO USUARIO E PORTANDO SUAS RECEITAS TAMBEM
     while True :
         comand = input(f"""
     Sistema De Cadastro:
@@ -16,49 +17,51 @@ def data_center ():
         C - Alterar dados
         D - Excluir conta
         E - Contas
-        
         F - Sair
 {"-="*30}
         Resposta: """).upper()
-
 
         if comand == "A":
             print("-="*30)
             login = input("Login: ")
             senha = input("Senha: ")
-            dia = input("Data: ")
+            email = input("Email: ")
 
-            if len(data) >= 1:
+            if len(email) >= 1:
                 a = ""
-                for i in range(len(data)):
-                    if data[i].login == login:
+                for i in range(len(email)):
+                    if email[i].login == login:
                         a = "S"
                 if a == "S":
                     print("Usuário já existente. ")
                 else:
                     L = []                        #CRIAR UMA NOVA LISTA PARA CADA USUARIO NOVO
-                    x = User(login,senha,dia,receita(L,0),0)        
-                    data.append(x)
+                    x = User(login,senha,email,receita(L,0),0) 
+                    bd.new_user(User)       
+                    email.append(x)
             else:
                 L = []            #SE FOR O PRIMEIRO CADASTRO NAO ENTRA NO FOR PARA VERIFICAR O NOME
-                x = User(login,senha,dia,receita(L,0),0)      
-                data.append(x)
+                x = User(login,senha,email,receita(L,0),0)  
+                bd.new_user(User)     
+                email.append(x)
             print("-="*30)
             
 
         elif comand == "B":
             print("-="*30)
-            login = input("Login: ")
+            email = input("Email: ")
             senha = input("Senha: ")
             print("-="*30)
 
-            if len (data) >= 1:
-                for i in data:
+            if len (email) >= 1:
+                for i in email:
                     if i.login == login and i.senha == senha:
                         y = i.contar(1)                       #PARA SABER O NUMERO DE ACESSOS QUE O USUARIO JA FEZ( VAI SER USADO NA FUNCAO   "receita")
                         x = receita(i.user_receita,y) #apos criar uma lista de dicionario e atribuir a "x " 
                         i.user_receita = []           
                         i.user_receita = x[:]
+            for i in bd.lista_admin:
+                if email == bd.lista_admin[i].email
             else:
                 print("Sem dados.")
             print("-="*30)
@@ -70,8 +73,8 @@ def data_center ():
             senha = input("Senha: ")
             print("-="*30)
 
-            if len (data) >= 1:
-                for i in data:
+            if len (email) >= 1:
+                for i in email:
                     if i.login == login and i.senha == senha:
                         i.login = input("Novo login: ")
                         i.senha = input("Nova senha: ")
@@ -87,10 +90,10 @@ def data_center ():
             login = input("Login: ")
             senha = input("Senha: ")
             print("-="*30)
-            if len (data) >= 1:
-                for i in data:
+            if len (email) >= 1:
+                for i in email:
                     if i.login==login and i.senha == senha:
-                        data.remove(i)
+                        email.remove(i)
                         print("Dados excluidos.")
 
             else:
@@ -100,9 +103,9 @@ def data_center ():
 
         elif comand == "E":
             print("Contas: ")
-            if len(data) >= 1:
-                for i in data:
-                    c = i.nome_data()     #usar o metodo da classe User que retorna uma STR 
+            if len(email) >= 1:
+                for i in email:
+                    c = i.nome_email()     #usar o metodo da classe User que retorna uma STR 
                     print(c)
             else:
                 print("         Não há dados.")
@@ -115,7 +118,7 @@ def data_center ():
         else:
             pass
 
-    return data
+    return email
 
 def receita(lst,y): 
                                                                 #herança uso a classe bolo que recebe a classe comida
@@ -259,4 +262,4 @@ def receita(lst,y):
     return lista
 
 
-data_center()
+email_center()
