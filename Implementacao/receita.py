@@ -1,5 +1,5 @@
 class Comida:
-    def __init__ (self,nome,palavras_chave,doce_salgado,avaliacoes,glutem,porcoes,nomequant):
+    def __init__ (self,nome,palavras_chave,doce_salgado,glutem,porcoes,nomequant):
         self.nome = nome
         self.palavras_crave = palavras_chave
         self.doce_salgado = doce_salgado
@@ -13,8 +13,8 @@ class Comida:
     def retorno (self):
         return self.nome,self.doce_salgado,self.avaliacoes,self.glutem,self.porcoes,self.nomequant
 
-    def avaliar(self, avaliacao):
-        self.avaliacoes.append(avaliacao)
+    def avaliar(self, nota):
+        self.avaliacoes.append(nota)
         media = 0
         
         for i in self.avaliacoes:

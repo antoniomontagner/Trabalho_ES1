@@ -1,3 +1,6 @@
+from receita import Comida
+
+
 def tabela(lst):
     l = lst
     lis = l[:]
@@ -82,32 +85,22 @@ def parametros():
 
 
 #estrelas
-    star = ''
-    while star != "A" and star != "B":
-        star = input(f"""
-{"-="*30}
-    AVALIAÇÕES da receita:
-        A - ate 3 estrelas
-        B - mais de 3 estrelas
-{"-="*30}
-    Resposta:""").upper()
-
 
 #quente ou frio
-    hot_cold = ''
-    while hot_cold != "A" and hot_cold != "B":
-        hot_cold = input(f"""
+    glutem = ''
+    while glutem != "A" and glutem != "B":
+        glutem = input(f"""
 {"-="*30}
     A receita é:
-        A - Quente
-        B - Frio
+        A - Com glutem
+        B - Sem glutem
 {"-="*30}
     Resposta: """).upper()
 
 #porcoes
-    porc = ''
-    while porc != "A" and porc != "B":
-        porc = input(f"""
+    porcoes = ''
+    while porcoes != "A" and porcoes != "B":
+        porcoes = input(f"""
 {"-="*30}
     Porção geradas:
     
@@ -125,7 +118,7 @@ def parametros():
             print("ERRO. Você não digitou um número!")
 
 
-    return nome,palavras_chave,doce_salgado,star,hot_cold,porc,n_ingredientes
+    return nome,palavras_chave,doce_salgado,glutem,porcoes,n_ingredientes
 
 def nomequant(n_ingredientes):      # 
     lis = []
@@ -136,3 +129,15 @@ def nomequant(n_ingredientes):      #
         lis.append(dic)
 
     return lis
+
+
+def avaliar_receita(receita:Comida):
+    nota = -1
+    while nota < 0 or nota > 10:
+        nota = input(f"""
+    {"-="*30}
+    Nota da receita (0-10):
+    {"-="*30}
+    Resposta: """)
+
+    receita.avaliar(nota)

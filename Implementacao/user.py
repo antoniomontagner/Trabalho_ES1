@@ -1,14 +1,17 @@
 class User:
-    def __init__(self,login,senha,data,user_receita,cont):
+    def __init__(self,login,senha,email,user_receita):
         self.login = login
         self.senha = senha
-        self.data = data
-        self.user_receita = user_receita 
-        self.cont = cont
-
-    def contar(self,contar):
-        self.cont += contar
-        return self.cont
+        self.email = email
+        self.user_receita = user_receita
 
     def nome_data(self):
-        return f"""{"":10} User: {self.login}     Data de login: {self.data}"""
+        return f"""{"":10} User: {self.login}     Data de login: {self.email}"""
+
+class Admin(User):
+    def __init__(self, login, senha, email, user_receita, senha_admin):
+        self.login = login
+        self.senha = senha
+        self.email = email
+        self.user_receita = user_receita
+        self.senha_admin = senha_admin
