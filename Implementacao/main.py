@@ -6,6 +6,7 @@ from bd import BD, initial_admin
 from defs import parametros
 from defs import tabela
 from defs import nomequant
+<<<<<<< HEAD
 import sistema as s
 
 def main():
@@ -22,6 +23,44 @@ def main():
         for i in data.lista_admin:
             if user_atual == i.login:
                 s.menu_admin(user_atual, i, data)
+=======
+
+
+def data_center ():
+    data = []             #  VAI ARMAZENAR OS DADOS DO USUARIO E PORTANDO SUAS RECEITAS TAMBEM
+def email_center ():
+    email = []             #VAI ARMAZENAR OS DADOS DO USUARIO E PORTANDO SUAS RECEITAS TAMBEM
+    while True :
+        comand = input(f"""
+    Sistema De Cadastro:
+        A - Cadastrar usuario
+        B - Acessar conta
+        C - Alterar dados
+        D - Excluir conta
+        E - Contas
+        F - Sair
+{"-="*30}
+        Resposta: """).upper()
+
+        if comand == "A":
+            print("-="*30)
+            login = input("Login: ")
+            senha = input("Senha: ")
+            email = input("Email: ")
+
+            if len(email) >= 1:
+                a = ""
+                for i in range(len(email)):
+                    if email[i].login == login:
+                        a = "S"
+                if a == "S":
+                    print("Usuário já existente. ")
+                else:
+                    L = []                        #CRIAR UMA NOVA LISTA PARA CADA USUARIO NOVO
+                    x = User(login,senha,email,receita(L,0),0) 
+                    bd.new_user(User)       
+                    email.append(x)
+>>>>>>> origin/sketch_2
             else:
                 normal_user = True
         if normal_user:

@@ -1,3 +1,6 @@
+from receita import Comida
+
+
 def tabela(lst):
     l = lst
     lis = l[:]
@@ -53,16 +56,17 @@ def parametros():
 #tempo
     palavras_chave = []
     while 0>=len(palavras_chave) or 100>=len(palavras_chave) :
-        palavra = input(f"""
+        comand = input(f"""
         {"-="*30}
-            Inserira a palavra chave
+            1 -Inserir palavra chave
 
-            caso queira sair digite 0
+            0 - Exit
         {"-="*30}
             Resposta: """).upper()
-        if palavra != '0':
+        if comand == '1':
+            palavra = input("\n Palavra chave: ")
             palavras_chave.append(palavra)
-        elif palavra == '0':
+        elif comand == '0':
             break
         else:
             print("Input inválido. ")
@@ -81,32 +85,22 @@ def parametros():
 
 
 #estrelas
-    star = ''
-    while star != "A" and star != "B":
-        star = input(f"""
-{"-="*30}
-    AVALIAÇÕES da receita:
-        A - ate 3 estrelas
-        B - mais de 3 estrelas
-{"-="*30}
-    Resposta:""").upper()
 
-
-#quente ou frio
-    hot_cold = ''
-    while hot_cold != "A" and hot_cold != "B":
-        hot_cold = input(f"""
+#contem glutem
+    glutem = ''
+    while glutem != "A" and glutem != "B":
+        glutem = input(f"""
 {"-="*30}
     A receita é:
-        A - Quente
-        B - Frio
+        A - Com glutem
+        B - Sem glutem
 {"-="*30}
     Resposta: """).upper()
 
 #porcoes
-    porc = ''
-    while porc != "A" and porc != "B":
-        porc = input(f"""
+    porcoes = ''
+    while porcoes != "A" and porcoes != "B":
+        porcoes = input(f"""
 {"-="*30}
     Porção geradas:
     
@@ -124,14 +118,53 @@ def parametros():
             print("ERRO. Você não digitou um número!")
 
 
-    return nome,palavras_chave,doce_salgado,star,hot_cold,porc,n_ingredientes
+    return nome,palavras_chave,doce_salgado,glutem,porcoes,n_ingredientes
 
-def nomequant(n_ingredientes):
+def nomequant(n_ingredientes):      # 
     lis = []
 
     for i in range(n_ingredientes):
-        dic = {}                                                                      #dicionario
+        dic = {}
         dic[i] = input("Nome: "),input("Quantidade em gramas ou unidades: ")
         lis.append(dic)
 
     return lis
+
+
+def avaliar_receita(receita:Comida):        # para avaliar uma receita
+    nota = -1
+    while nota < 0 or nota > 10:
+        nota = input(f"""
+    {"-="*30}
+    Nota da receita (0-10):
+    {"-="*30}
+    Resposta: """)
+        if 0 <= nota <= 10:
+            receita.avaliar(nota)
+            break
+        else:
+            print("Valor inválido. ")
+
+
+def denunciar_receita(receita:Comida, lista_denuncia:list):
+    motivo = ''
+    denuncia = dict
+    while len(motivo<=0):
+        motivo = input(f"""
+        {"-="*30}
+        Motivo da denúncia:
+            1 - Contêm conteúdo inapropriado
+            2 - Não é uma receita
+            3 - Receita plagiada
+
+            0 - Sair
+        {"-="*30}
+        Resposta: """)
+    
+        if motivo in ("1","2","3"):
+            denuncia[receita.nome]="motivo=" + motivo
+            lista_denuncia.append(denuncia)
+        elif motivo == "0":
+            break
+        else:
+            print("Valor inválido. ")
