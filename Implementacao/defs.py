@@ -86,7 +86,7 @@ def parametros():
 
 #estrelas
 
-#quente ou frio
+#contem glutem 
     glutem = ''
     while glutem != "A" and glutem != "B":
         glutem = input(f"""
@@ -120,18 +120,19 @@ def parametros():
 
     return nome,palavras_chave,doce_salgado,glutem,porcoes,n_ingredientes
 
-def nomequant(n_ingredientes):      # 
-    lis = []
+def nomequant(n_ingredientes):      #  receber N ingredientes e retornar a lista de ingredientes
+    lista_ingredientes = []
 
     for i in range(n_ingredientes):
-        dic = {}                                                                      #dicionario
-        dic[i] = input("Nome: "),input("Quantidade em gramas ou unidades: ")
-        lis.append(dic)
+        dic = {}
+        nome = input("Nome: ")
+        dic[nome] =input("Quantidade em gramas ou unidades: ")
+        lista_ingredientes.append(dic)
 
-    return lis
+    return lista_ingredientes
 
 
-def avaliar_receita(receita:Comida):
+def avaliar_receita(receita:Comida):        # para avaliar uma comida
     nota = -1
     while nota < 0 or nota > 10:
         nota = input(f"""
@@ -139,5 +140,8 @@ def avaliar_receita(receita:Comida):
     Nota da receita (0-10):
     {"-="*30}
     Resposta: """)
-
-    receita.avaliar(nota)
+        if 0 <= nota <= 10:
+            receita.avaliar(nota)
+            break
+        else:
+            print("Valor inválido. ")
