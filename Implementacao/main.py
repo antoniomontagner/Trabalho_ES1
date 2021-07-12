@@ -7,14 +7,11 @@ from defs import parametros
 from defs import tabela
 from defs import nomequant
 
-<<<<<<< HEAD
 
 def data_center ():
     data = []             #  VAI ARMAZENAR OS DADOS DO USUARIO E PORTANDO SUAS RECEITAS TAMBEM
-=======
 def email_center ():
     email = []             #VAI ARMAZENAR OS DADOS DO USUARIO E PORTANDO SUAS RECEITAS TAMBEM
->>>>>>> 755124a62f24c4f797edb19c9e9ce37f59acd6e8
     while True :
         comand = input(f"""
     Sistema De Cadastro:

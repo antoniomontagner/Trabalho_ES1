@@ -144,3 +144,27 @@ def avaliar_receita(receita:Comida):        # para avaliar uma receita
             break
         else:
             print("Valor inválido. ")
+
+
+def denunciar_receita(receita:Comida, lista_denuncia:list):
+    motivo = ''
+    denuncia = dict
+    while len(motivo<=0):
+        motivo = input(f"""
+        {"-="*30}
+        Motivo da denúncia:
+            1 - Contêm conteúdo inapropriado
+            2 - Não é uma receita
+            3 - Receita plagiada
+
+            0 - Sair
+        {"-="*30}
+        Resposta: """)
+    
+        if motivo in ("1","2","3"):
+            denuncia[receita.nome]="motivo=" + motivo
+            lista_denuncia.append(denuncia)
+        elif motivo == "0":
+            break
+        else:
+            print("Valor inválido. ")
