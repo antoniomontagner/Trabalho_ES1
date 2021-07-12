@@ -1,5 +1,4 @@
-from receita import Comida
-
+from receita import Receita
 
 def tabela(lst):
     l = lst
@@ -59,7 +58,6 @@ def parametros():
         comand = input(f"""
         {"-="*30}
             1 -Inserir palavra chave
-
             0 - Exit
         {"-="*30}
             Resposta: """).upper()
@@ -86,14 +84,14 @@ def parametros():
 
 #estrelas
 
-#contem glutem
-    glutem = ''
-    while glutem != "A" and glutem != "B":
-        glutem = input(f"""
+#contem gluten
+    gluten = ''
+    while gluten != "A" and gluten != "B":
+        gluten = input(f"""
 {"-="*30}
     A receita é:
-        A - Com glutem
-        B - Sem glutem
+        A - Com gluten
+        B - Sem gluten
 {"-="*30}
     Resposta: """).upper()
 
@@ -118,7 +116,7 @@ def parametros():
             print("ERRO. Você não digitou um número!")
 
 
-    return nome,palavras_chave,doce_salgado,glutem,porcoes,n_ingredientes
+    return nome,palavras_chave,doce_salgado,gluten,porcoes,n_ingredientes
 
 def nomequant(n_ingredientes):      # 
     lis = []
@@ -131,7 +129,7 @@ def nomequant(n_ingredientes):      #
     return lis
 
 
-def avaliar_receita(receita:Comida):        # para avaliar uma receita
+def avaliar_receita(receita:Receita):        # para avaliar uma receita
     nota = -1
     while nota < 0 or nota > 10:
         nota = input(f"""
@@ -146,9 +144,9 @@ def avaliar_receita(receita:Comida):        # para avaliar uma receita
             print("Valor inválido. ")
 
 
-def denunciar_receita(receita:Comida, lista_denuncia:list):
+def denunciar_receita(receita:Receita, lista_denuncia:list):
     motivo = ''
-    denuncia = dict
+    denuncia = []
     while len(motivo<=0):
         motivo = input(f"""
         {"-="*30}
@@ -156,7 +154,6 @@ def denunciar_receita(receita:Comida, lista_denuncia:list):
             1 - Contêm conteúdo inapropriado
             2 - Não é uma receita
             3 - Receita plagiada
-
             0 - Sair
         {"-="*30}
         Resposta: """)

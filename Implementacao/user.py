@@ -1,9 +1,9 @@
 class User:
-    def __init__(self,login,senha,email,user_receita):
+    def __init__(self,login,senha,email,lista_receitas):
         self.login = login
         self.senha = senha
         self.email = email
-        self.user_receita = user_receita
+        self.lista_receitas = lista_receitas
 
     @property
     def login(self):
@@ -30,17 +30,17 @@ class User:
         self._email = value
 
     @property
-    def user_receita(self):
-         return self._user_receita
+    def lista_receitas(self):
+         return self._lista_receitas
 
-    @user_receita.setter
-    def user_receita(self, value):
-        self._user_receita = value
+    @lista_receitas.setter
+    def lista_receitas(self, value):
+        self._lista_receitas = value
 
 class Admin(User):
-    def __init__(self, login, senha, email, senha_admin):
+    def __init__(self, login, senha, email, senha_admin, lista_denuncias):
         self.login = login
         self.senha = senha
         self.email = email
         self.senha_admin = senha_admin
-        
+        self
