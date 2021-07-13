@@ -60,11 +60,10 @@ Resposta: """).upper()
                             print("Pin incorreto")
                             break
             if data.lista_users:
-                    for i in data.lista_users:
-                        if i.email == email and i.senha == senha:
-                            user_atual = i.login
-            else:
-                print("Senha ou email incorretos")
+                if i.email == email and i.senha == senha:
+                    user_atual = i.login
+                else:
+                    print("Senha ou email incorretos")
 
         elif comand == "C":
             return 'exit'

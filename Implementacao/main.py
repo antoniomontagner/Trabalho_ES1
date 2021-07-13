@@ -1,7 +1,7 @@
 from receita import Receita
 from user import User
 from user import Admin
-from bd import BD, initial_admin
+from bd import BD, initial_admin, initial_user
 from defs import parametros
 
 # from defs import nomequant -> lista_ingredientes
