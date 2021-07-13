@@ -1,6 +1,6 @@
 from receita import Receita
 from user import User #
-import defs
+import interface
 
 def pesquisar_receita(data):
 
@@ -8,33 +8,20 @@ def pesquisar_receita(data):
     for i in data.lista_users:
         for j in i:
             lista_total.append(j.lista_receitas)
-
-    print(lista_total)
-
-    pesquisa = input(f"""
-        {"-="*30}
-        ######################
-        # Pesquisar Receitas #
-        ######################
-        {"-="*30}
-            O que iremos cozinhar hoje? 
-
-                *Colocar nome da receita ou palavra chave
-            
-            \n    """).upper()
+    pesquisa = menu_pesquisa_receita(lista_total)
 
     #for receita in lista_total: 
     for receita_encontrada in lista_total:
         if len (receita_encontrada.palavras_chave) > 0:
             for palavra in receita_encontrada.palavras_chave:
                 if pesquisa == palavra:             #imprimir a uma tabela sobre a receita
-                    defs.retornar_receita(receita_encontrada)
+                    interface.retornar_receita(receita_encontrada)
                     denunciar_avaliar(receita_encontrada,data.lista_denuncia)       # lista de denuncia
         else:
             for receita_encontrada in lista_total:
                 for ingrediente in receita_encontrada.lista_ingredientes:
                     if pesquisa == ingrediente.keys():
-                        defs.retornar_receita(receita_encontrada)
+                        interface.retornar_receita(receita_encontrada)
                     else:
                         print("0 receitas encontradas.")
 
@@ -58,16 +45,8 @@ def denunciar_receita(receita, lista_denuncia:list):
     motivo = ''
     while len(motivo<=0):
         denuncia = {}
-        motivo = input(f"""
-        {"-="*30}
-        Motivo da denúncia:
-            1 - Contêm conteúdo inapropriado
-            2 - Não é uma receita
-            3 - Receita plagiada
-            0 - Sair
-        {"-="*30}
-        Resposta: """)
-    
+        motivo = menu_denunciar_motivo()
+
         if motivo in ("1","2","3"):
             denuncia[receita.nome_usuario]=[receita.nome,motivo]
             lista_denuncia.append(denuncia)
@@ -79,13 +58,7 @@ def denunciar_receita(receita, lista_denuncia:list):
 
 def denunciar_avaliar(receita,lista_denuncia):
     while True:
-        comando = input("""
-            Deseja:
-                1 - Avaliar a receita
-                2 - Denunciar a receita
-
-                0 - Não fazer nada
-        """)
+        comando = menu_comando_avaliar()
         if comando == '1':
             avaliar_receita(receita)
         elif comando == '2':
@@ -112,21 +85,18 @@ def acessar_denuncias(lista_denuncia:list, lista_users):
         """)
 
         if comand == '1':
-            nome_usuario = input(" Nome do usuario que pretende acessar: ")
-            nome_receita = input(" Nome da receita: ")
+            nome_usuario, nome_receita = menu_nome_receita()
             try:
                 for i in lista_denuncia:
                     for c,v in i.items():
                         if nome_usuario == c:
                             if nome_receita == v[0]:
                                 verificar_receitas(nome_usuario, nome_receita, lista_users)  # metodo para retornar os dados
-                
             except:
                 print(" Dados não encontrados. ")
 
         elif comand == '2':
-            nome_usuario = input(" Nome do usuario que pretende deletar: ")
-            nome_receita = input(" Nome da receita que pretende deletar: ")
+            nome_usuario, nome_receita = menu_nome_receita()
             try:
                 for i in lista_denuncia:
                     dado_encontrado = False
@@ -166,3 +136,46 @@ def deletar_receitas(nome_usuario, nome_receita, lista_users):      # deletar a 
                         i.lista_receitas.pop(j)
     except:
         print(" Dados não encontrados. ")   
+
+
+def menu_nome_receita():
+    nome_usuario = input(" Nome do usuario que pretende acessar: ")
+    nome_receita = input(" Nome da receita: ")
+    return nome_usuario, nome_receita
+
+def menu_pesquisa_receita(lista_total):
+    print(lista_total)
+    pesquisa = input(f"""
+        {"-="*30}
+        ######################
+        # Pesquisar Receitas #
+        ######################
+        {"-="*30}
+            O que iremos cozinhar hoje? 
+
+                *Colocar nome da receita ou palavra chave
+            
+            \n    """).upper()
+    return pesquisa
+
+def menu_denunciar_motivo():
+    motivo = input(f"""
+        {"-="*30}
+        Motivo da denúncia:
+            1 - Contêm conteúdo inapropriado
+            2 - Não é uma receita
+            3 - Receita plagiada
+            0 - Sair
+        {"-="*30}
+        Resposta: """)
+    return motivo
+
+def menu_comando_avaliar():
+    avaliar = input("""
+            Deseja:
+                1 - Avaliar a receita
+                2 - Denunciar a receita
+
+                0 - Não fazer nada
+        """)
+    return avaliar

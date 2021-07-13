@@ -1,10 +1,10 @@
 from receita import Receita
 from user import User
-from user import Admin  #
+from user import Admin  
 from bd import BD, initial_admin
-from defs import parametros
+from interface import parametros
 
-# from defs import nomequant -> lista_ingredientes
+# from interface import nomequant -> lista_ingredientes
 import sistema as s
 
 def main():
@@ -14,7 +14,7 @@ def main():
     user_atual = 0
     data = BD(lista_admin_, lista_users_, lista_denuncia)
     initial_admin(data)
-    initial_user(data)
+    #initial_user(data)
     normal_user = False
     sair = False
     
