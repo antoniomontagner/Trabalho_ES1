@@ -142,7 +142,7 @@ Resposta: """).upper()
 {"-="*30}
     O que iremos cozinhar hoje? 
     \n    """).upper()
-            lista_total = []
+            data.lista_total = []   #lista de todas as receitas
             for i in data.lista_users:
                 lista_total.append(i.lista_receitas)
             for receita in lista_total:
@@ -268,13 +268,13 @@ def menu_admin(user_atual, i, data):
 
     while user_atual == i.login:
         comand = input(f"""
-Sistema da Administracao:
-    A - Todas as Contas
-    B - Pesquisa
-    C - Denuncias
-    D - Sair
-{"-="*30}
-Resposta: """).upper()
+        Sistema da Administracao:
+            A - Todas as Contas
+            B - Pesquisa
+            C - Denuncias
+            D - Sair
+        {"-="*30}
+        Resposta: """).upper()
         if comand == "A":
             aux_user = 1
             aux_adm = 1
@@ -291,30 +291,41 @@ Resposta: """).upper()
                 print("-="*30)
                 aux_adm += 1
             print('\n  Deseja fazer alguma alteracao?'  )
-            alteracao = input(f"""A - Excluir uma conta.
-    B - Alterar dados de uma conta.
-    C - Adicionar uma conta admnistrativa.
-    D - Nao, sair.
-{"-="*30}
-Resposta: """).upper()  
-                if alteracao == 'A':
-
-                elif alteracao == 'B':
-                elif alteracao == 'C':
-                elif alteracao == 'D':
-                else:
-                    pass
+            alteracao = input(f"""
+                A - Excluir uma conta.
+                B - Alterar dados de uma conta.
+                C - Adicionar uma conta admnistrativa.
+                D - Nao, sair.
+                {"-="*30}
+                Resposta: """).upper()  
+            if alteracao == 'A':
+                login = input(" Email do usuário: ")
+                for usuario_pesquisa in data.lista_users:
+                    if login == usuario_pesquisa.login:
+                        data.lista_users.pop(usuario_pesquisa)
+            elif alteracao == 'B':
+                print("Alterar dados de uma conta.")
+            elif alteracao == 'C':
+                print("Adicionar uma conta admnistrativa.")
+            elif alteracao == 'D':
+                print("Sair")
+            else:
+                pass
 
         elif comand == "B":
             print("-="*30)
             print(f'Pesquisa de Receitas')
             print("-="*30)
+            login = input(" Email do usuário: ")
+            for usuario_pesquisa in data.lista_users:
+                if login == usuario_pesquisa.login:
+                    print(f"Login : {usuario_pesquisa.login}, Email : {usuario_pesquisa.email}, Senha : {usuario_pesquisa.senha}")
 
 
         elif comand == "C":
             print("-="*30)
             print(f'Denuncias Recebidas: ')
-            defs.acessar_denuncias()
+            defs.acessar_denuncias(data.denuncias, data.lista_users)    # denuncias nao esta funcionando direito
             print("-="*30)
 
 
@@ -322,5 +333,5 @@ Resposta: """).upper()
             user_atual = 0
 
         else:
-            pass
+            print(" Comando inválido. ")
 

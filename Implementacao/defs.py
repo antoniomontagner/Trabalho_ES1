@@ -72,7 +72,6 @@ def parametros():
         doce_salgado = input(f"""
 {"-="*30}
         O comida é:   
-        
             A - Doce
             B - Salgado
 {"-="*30}
@@ -170,7 +169,7 @@ def acessar_denuncias(lista_denuncia:list, lista_users):
             except:
                 print(" Dados não encontrados. ")
 
-def verificar_receitas(nome_usuario, nome_receita, lista_users):
+def verificar_receitas(nome_usuario, nome_receita, lista_users):    # verificar a conta do usuario
     try:
         for i in lista_users:
             if i.nome == nome_usuario:
@@ -180,7 +179,7 @@ def verificar_receitas(nome_usuario, nome_receita, lista_users):
     except:
         print(" Dados não encontrados. ")   
 
-def deletar_receitas(nome_usuario, nome_receita, lista_users):
+def deletar_receitas(nome_usuario, nome_receita, lista_users):      # deletar a receita do usuario
     try:
         for i in lista_users:
             if i.nome == nome_usuario:
