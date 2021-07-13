@@ -21,16 +21,19 @@ def pesquisar_receita(data):
             \n    """).upper()
 
     for receita in lista_total: 
-        for palavra in receita.palavras_chave:
-            if pesquisa == palavra:             #imprimir a uma tabela sobre a receita
-                defs.retornar_receita(receita)
-                denunciar_avaliar(receita,data.lista_denuncia)       # lista de denuncia
-        else:
-            for ingrediente in receita.lista_ingredientes:
-                if pesquisa == ingrediente.keys():
-                    defs.retornar_receita(receita)
-                else:
-                    print("0 receitas encontradas.")
+        for receita_encontrada in receita:
+            if len (receita_encontrada.palavras_chave) > 0:
+                for palavra in receita_encontrada.palavras_chave:
+                    if pesquisa == palavra:             #imprimir a uma tabela sobre a receita
+                        defs.retornar_receita(receita_encontrada)
+                        denunciar_avaliar(receita_encontrada,data.lista_denuncia)       # lista de denuncia
+            else:
+                for receita_encontrada in receita:
+                    for ingrediente in receita_encontrada.lista_ingredientes:
+                        if pesquisa == ingrediente.keys():
+                            defs.retornar_receita(receita_encontrada)
+                        else:
+                            print("0 receitas encontradas.")
 
 
 def avaliar_receita(receita):        # para avaliar uma receita
