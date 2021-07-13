@@ -1,5 +1,5 @@
 from receita import Receita
-from user import User
+from user import User #
 import defs
 
 def pesquisar_receita(data):
