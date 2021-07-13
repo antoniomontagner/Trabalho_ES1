@@ -3,8 +3,8 @@ from user import User
 from user import Admin
 from bd import BD, initial_admin
 from defs import parametros
-from defs import tabela
-from defs import nomequant
+
+# from defs import nomequant -> lista_ingredientes
 import sistema as s
 
 def main():
