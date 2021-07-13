@@ -93,6 +93,8 @@ def menu_user(user_atual, j, data):
     
     while user_atual == j.login:
         comand = input(f"""
+
+{"##"*30}    
     A - Criar Receita
     B - Pesquisa
     C - Minhas Receitas
@@ -167,7 +169,7 @@ Resposta: """).upper()
             while True:
                 print(f"""
                 {'-'*30}
-                    Nome:   {j.nome}
+                    Nome:   {j.login}
                     Email:  {j.email}
                 {'-'*30}
                 """)
@@ -183,16 +185,16 @@ Resposta: """).upper()
                     login = input(" Email de acesso: ")
                     senha = input(" Senha de acesso: ")
                     for usuarios in data.lista_users:
-                        if login == usuarios.login:
+                        if login == usuarios.email:
                             if senha == usuarios.senha:
                                 novo_nome = input(" Novo nome: ")
-                                usuarios.nome = novo_nome
+                                usuarios.login = novo_nome
                 
                 elif alteracao == '2':
                     login = input(" Email de acesso: ")
                     senha = input(" Senha de acesso: ")
                     for usuarios in data.lista_users:
-                        if login == usuarios.login:
+                        if login == usuarios.email:
                             if senha == usuarios.senha:
                                 novo_senha = input(" Nova senha: ")
                                 usuarios.senha = novo_senha   
@@ -201,7 +203,7 @@ Resposta: """).upper()
                     login = input(" Email de acesso: ")
                     senha = input(" Senha de acesso: ")
                     for usuarios in data.lista_users:
-                        if login == usuarios.login:
+                        if login == usuarios.email:
                             if senha == usuarios.senha:
                                 novo_email = input(" Novo email: ")
                                 usuarios.email = novo_email   
@@ -210,9 +212,9 @@ Resposta: """).upper()
                     login = input(" Email de acesso: ")
                     senha = input(" Senha de acesso: ")
                     for usuarios in data.lista_users:
-                        if login == usuarios.login:
+                        if login == usuarios.email:
                             if senha == usuarios.senha:
-                                data.lista_users.pop(usuarios)
+                                data.lista_users.remove(usuarios)
                                 user_atual = 0          # excluiu a conta entao sai 
 
                 elif alteracao == '0':
