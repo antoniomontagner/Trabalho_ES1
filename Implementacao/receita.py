@@ -1,6 +1,7 @@
 class Receita:
-    def __init__ (self, nome, palavras_chave, doce_salgado, porcoes, gluten, lista_ingredientes, descricao):
+    def __init__ (self, nome,nome_usuario, palavras_chave, doce_salgado, porcoes, gluten, lista_ingredientes, descricao):
         self.nome = nome
+        self.nome_usuario = nome_usuario    #nome do criador 
         self.palavras_chave = palavras_chave
         self.doce_salgado = doce_salgado
         self.avaliacoes = []

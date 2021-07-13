@@ -5,6 +5,7 @@ from user import Admin
 from bd import BD
 from defs import parametros
 import defs
+import pesquisa
 
 def menu_cadastro(data):
     user_atual = 0
@@ -123,37 +124,18 @@ Resposta: """).upper()
                     print("\n ~~ Nome já existente ~~ ")
                 else:
                     ingre = defs.lista_ingredientes(n_ingredientes)           #funcao que retorna uma lista dos ingredientes que vai usar
-                    food = Receita(nome,palavras_chave,doce_salgado,gluten,porcoes,ingre, descricao)
+                    food = Receita(nome,user_atual,palavras_chave,doce_salgado,gluten,porcoes,ingre, descricao)
                     #lista.append(food)
                     j.lista_receitas.append(food)
             else:
                 ingre = defs.lista_ingredientes(n_ingredientes)
-                food = Receita(nome,palavras_chave,doce_salgado,gluten,porcoes,ingre, descricao)
+                food = Receita(nome,user_atual,palavras_chave,doce_salgado,gluten,porcoes,ingre, descricao)
                 j.lista_receitas.append(food)
                 print
 
 
         elif comand == "B":
-            pesquisa = input(f"""
-{"-="*30}
-   ######################
-   # Pesquisar Receitas #
-   ######################
-{"-="*30}
-    O que iremos cozinhar hoje? 
-    \n    """).upper()
-            data.lista_total = []   #lista de todas as receitas
-            for i in data.lista_users:
-                lista_total.append(i.lista_receitas)
-            for receita in lista_total:
-                if pesquisa == receita.palavras_chave:
-                    print(receita.retorno())
-                else:
-                    for ingrediente in receita.lista_ingredientes:
-                        if pesquisa == ingrediente.keys():
-                            print(receita.retorno())
-                        else:
-                            print("0 receitas encontradas.")
+            pesquisa.pesquisar_receita(data)
 
         elif comand == "C":
                 print("-="*30)
@@ -175,21 +157,8 @@ Resposta: """).upper()
                 nome = input("Nome da Receita: ")
                 for receita in j.lista_receitas:
                     if receita.nome == nome :
-                        nome, doce_salgado, avaliacoes, gluten, porcoes, lista_ingredientes, descricao =  receita.retorno()
-                        print(f"""
-                        Nome da receita: {nome}
-                                                                    Legenda:
-                                            {"#"*53}
-                            Tipo: {doce_salgado}        |  {"A- Doce":<23} /  {"B- Salgado":<23}|
-                            Tipo: {avaliacoes}        |  {"A- Até 3 estrelas":<23} /  {"B- Mais de 3 estrelas":<23}|
-                            Tipo: {gluten}        |  {"A- Com gluten":<23} /  {"B- Sem gluten":<23}|
-                            Tipo: {porcoes}        |  {"A- Ate de 2 pessoas":<23} /  {"B- Mais de 2 pessoas":<23}|
-                                            {"#"*53}
-                                Numero de ingredientes: {len(lista_ingredientes)} 
-                                        Ingredientes: """)
-                        for k in lista_ingredientes:
-                            for c,v in k.items():                            
-                                print(f"""          {"Nome:":>48} {c:<15}{" ":8}quantidade: {v}""")
+                        defs.retornar_receita(receita)
+
             else:
                 print("Não há dados.")
 
@@ -321,13 +290,11 @@ def menu_admin(user_atual, i, data):
                 if login == usuario_pesquisa.login:
                     print(f"Login : {usuario_pesquisa.login}, Email : {usuario_pesquisa.email}, Senha : {usuario_pesquisa.senha}")
 
-
         elif comand == "C":
             print("-="*30)
             print(f'Denuncias Recebidas: ')
-            defs.acessar_denuncias(data.denuncias, data.lista_users)    # denuncias nao esta funcionando direito
+            pesquisa.acessar_denuncias(data.denuncias, data.lista_users)    # denuncias nao esta funcionando direito
             print("-="*30)
-
 
         elif comand == "D":
             user_atual = 0

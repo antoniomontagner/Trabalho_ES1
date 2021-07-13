@@ -124,67 +124,20 @@ def lista_ingredientes(n_ingredientes):      #   INGREDIENTES   atualmente uma l
 
     return lista
 
-################       funcoes (base) para o administrador
-def acessar_denuncias(lista_denuncia:list, lista_users):
-    for i in lista_denuncia:
-        for c,v in i.items():      # chave, valor de cada item
-            print(f" Usuário: {c} receita: {v[0]} motivo: {v[1]}")
-    print('-'*40)
-    
-    while True:
-        comand = input("""
-        1 - Verificar receitas do usuario
-        2 - Deletar receita do usuario
 
-        0 - Exit
-        """)
-
-        if comand == '1':
-            nome_usuario = input(" Nome do usuario que pretende acessar: ")
-            nome_receita = input(" Nome da receita: ")
-            try:
-                for i in lista_denuncia:
-                    for c,v in i.items():
-                        if nome_usuario == c:
-                            if nome_receita == v[0]:
-                                verificar_receitas(nome_usuario, nome_receita, lista_users)  # metodo para retornar os dados
-                
-            except:
-                print(" Dados não encontrados. ")
-
-        elif comand == '2':
-            nome_usuario = input(" Nome do usuario que pretende deletar: ")
-            nome_receita = input(" Nome da receita que pretende deletar: ")
-            try:
-                for i in lista_denuncia:
-                    dado_encontrado = False
-                    for c,v in i.items():
-                        if nome_usuario == c:
-                            if nome_receita == v[0]:
-                                dado_encontrado = True
-                    if dado_encontrado:
-                        lista_denuncia.pop(i)
-                        # colocar o pop da lista do usuario
-                        deletar_receitas(nome_usuario, nome_receita, lista_users)
-            except:
-                print(" Dados não encontrados. ")
-
-def verificar_receitas(nome_usuario, nome_receita, lista_users):    # verificar a conta do usuario
-    try:
-        for i in lista_users:
-            if i.nome == nome_usuario:
-                for j in i.lista_receitas:
-                    if j.nome == nome_receita:
-                        print(f" Receita denunciada: {j}")
-    except:
-        print(" Dados não encontrados. ")   
-
-def deletar_receitas(nome_usuario, nome_receita, lista_users):      # deletar a receita do usuario
-    try:
-        for i in lista_users:
-            if i.nome == nome_usuario:
-                for j in i.lista_receitas:
-                    if j.nome == nome_receita:
-                        i.lista_receitas.pop(j)
-    except:
-        print(" Dados não encontrados. ")   
+def retornar_receita (receita):     # imprimir os dados de uma receita
+    nome, doce_salgado, avaliacoes, gluten, porcoes, lista_ingredientes, descricao =  receita.retorno()
+    print(f"""
+    Nome da receita: {nome}
+                                                Legenda:
+                        {"#"*53}
+        Tipo: {doce_salgado}        |  {"A- Doce":<23} /  {"B- Salgado":<23}|
+        Tipo: {avaliacoes}        |  {"A- Até 3 estrelas":<23} /  {"B- Mais de 3 estrelas":<23}|
+        Tipo: {gluten}        |  {"A- Com gluten":<23} /  {"B- Sem gluten":<23}|
+        Tipo: {porcoes}        |  {"A- Ate de 2 pessoas":<23} /  {"B- Mais de 2 pessoas":<23}|
+                        {"#"*53}
+            Numero de ingredientes: {len(lista_ingredientes)} 
+                    Ingredientes: """)
+    for k in lista_ingredientes:
+        for c,v in k.items():                            
+            print(f"""          {"Nome:":>48} {c:<15}{" ":8}quantidade: {v}""")
