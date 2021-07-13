@@ -6,7 +6,10 @@ def pesquisar_receita(data):
 
     lista_total = []                       #   lista de todas as receitas
     for i in data.lista_users:
-        lista_total.append(i.lista_receitas)
+        for j in i:
+            lista_total.append(j.lista_receitas)
+
+    print(lista_total)
 
     pesquisa = input(f"""
         {"-="*30}
@@ -20,20 +23,20 @@ def pesquisar_receita(data):
             
             \n    """).upper()
 
-    for receita in lista_total: 
-        for receita_encontrada in receita:
-            if len (receita_encontrada.palavras_chave) > 0:
-                for palavra in receita_encontrada.palavras_chave:
-                    if pesquisa == palavra:             #imprimir a uma tabela sobre a receita
+    #for receita in lista_total: 
+    for receita_encontrada in lista_total:
+        if len (receita_encontrada.palavras_chave) > 0:
+            for palavra in receita_encontrada.palavras_chave:
+                if pesquisa == palavra:             #imprimir a uma tabela sobre a receita
+                    defs.retornar_receita(receita_encontrada)
+                    denunciar_avaliar(receita_encontrada,data.lista_denuncia)       # lista de denuncia
+        else:
+            for receita_encontrada in lista_total:
+                for ingrediente in receita_encontrada.lista_ingredientes:
+                    if pesquisa == ingrediente.keys():
                         defs.retornar_receita(receita_encontrada)
-                        denunciar_avaliar(receita_encontrada,data.lista_denuncia)       # lista de denuncia
-            else:
-                for receita_encontrada in receita:
-                    for ingrediente in receita_encontrada.lista_ingredientes:
-                        if pesquisa == ingrediente.keys():
-                            defs.retornar_receita(receita_encontrada)
-                        else:
-                            print("0 receitas encontradas.")
+                    else:
+                        print("0 receitas encontradas.")
 
 
 def avaliar_receita(receita):        # para avaliar uma receita
@@ -137,6 +140,12 @@ def acessar_denuncias(lista_denuncia:list, lista_users):
                         deletar_receitas(nome_usuario, nome_receita, lista_users)
             except:
                 print(" Dados não encontrados. ")
+        
+        elif comand == '0':
+            break
+
+        else:
+            print(" Comando inválido. ")
 
 def verificar_receitas(nome_usuario, nome_receita, lista_users):    # verificar a conta do usuario
     try:

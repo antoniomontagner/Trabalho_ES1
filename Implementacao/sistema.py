@@ -59,18 +59,12 @@ Resposta: """).upper()
                         else:
                             print("Pin incorreto")
                             break
-                if data.lista_users:
+            if data.lista_users:
                     for i in data.lista_users:
-                        print('b')
                         if i.email == email and i.senha == senha:
-                            print('c')
                             user_atual = i.login
-                        else:
-                            print("Senha ou email incorretos")
-                else:
-                            print("Usuario não cadastrado")
             else:
-                print("Senha ou email inválidos")
+                print("Senha ou email incorretos")
 
         elif comand == "C":
             return 'exit'
@@ -89,7 +83,7 @@ Resposta: """).upper()
 # D -> menu de acesso à conta do usuário, podendo acessar seus dados, podendo excluir conta e alterar dados(senha, login, email).
 
 def menu_user(user_atual, j, data):
-    print(f'\nBem vindo, {user_atual}!')
+    print(f'Bem vindo, {user_atual}!')
     
     while user_atual == j.login:
         comand = input(f"""
@@ -114,7 +108,7 @@ Resposta: """).upper()
 {"-="*30}
         """)
             #lista = [] 
-            nome,palavras_chave,doce_salgado,gluten,porcoes,n_ingredientes, descricao =parametros()     #funcao valores
+            nome,palavras_chave,doce_salgado,gluten,porcoes,n_ingredientes, descricao, modo_preparo =parametros()     #funcao valores
             if len(j.lista_receitas) >= 1:
                 aux = ""
                 print(j.lista_receitas)
@@ -126,12 +120,12 @@ Resposta: """).upper()
                     print("\n ~~ Nome já existente ~~ ")
                 else:
                     ingre = defs.lista_ingredientes(n_ingredientes)           #funcao que retorna uma lista dos ingredientes que vai usar
-                    food = Receita(nome,user_atual,palavras_chave,doce_salgado,gluten,porcoes,ingre, descricao)
+                    food = Receita(nome,user_atual,palavras_chave,doce_salgado,gluten,porcoes,ingre, descricao, modo_preparo)
                     #lista.append(food)
                     j.lista_receitas.append(food)
             else:
                 ingre = defs.lista_ingredientes(n_ingredientes)
-                food = Receita(nome,user_atual,palavras_chave,doce_salgado,gluten,porcoes,ingre, descricao)
+                food = Receita(nome,user_atual,palavras_chave,doce_salgado,gluten,porcoes,ingre, descricao, modo_preparo)
                 j.lista_receitas.append(food)
                 print
 
@@ -215,7 +209,8 @@ Resposta: """).upper()
                         if login == usuarios.email:
                             if senha == usuarios.senha:
                                 data.lista_users.remove(usuarios)
-                                user_atual = 0          # excluiu a conta entao sai 
+                                user_atual = 0          # excluiu a conta entao sai     # quando deleta o user nao sai da conta mas deleta as coisas
+                                break
 
                 elif alteracao == '0':
                     break
@@ -285,7 +280,7 @@ def menu_admin(user_atual, i, data):
 
         elif comand == "B":
             print("-="*30)
-            print(f'Pesquisa de Receitas')
+            print('Pesquisa de Receitas')
             print("-="*30)
             login = input(" Email do usuário: ")
             for usuario_pesquisa in data.lista_users:
@@ -294,8 +289,8 @@ def menu_admin(user_atual, i, data):
 
         elif comand == "C":
             print("-="*30)
-            print(f'Denuncias Recebidas: ')
-            pesquisa.acessar_denuncias(data.denuncias, data.lista_users)    # denuncias nao esta funcionando direito
+            print('Denuncias Recebidas: ')
+            pesquisa.acessar_denuncias(data.lista_denuncia, data.lista_users)    # denuncias nao esta funcionando direito
             print("-="*30)
 
         elif comand == "D":

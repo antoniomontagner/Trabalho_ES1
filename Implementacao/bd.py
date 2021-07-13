@@ -2,9 +2,10 @@ from user import User
 from user import Admin
 
 class BD:
-    def __init__(self, lista_admin, lista_users):
+    def __init__(self, lista_admin, lista_users, lista_denuncia):
         self.lista_admin = lista_admin
         self.lista_users = lista_users
+        self.lista_denuncia = lista_denuncia
 
     @property
     def lista_admin(self):
@@ -22,6 +23,14 @@ class BD:
     def lista_users(self, value):
         self._lista_users = value
 
+    @property
+    def lista_denuncia(self):
+        return self._lista_denuncia
+
+    @lista_denuncia.setter
+    def lista_denuncia(self, value):
+        self._lista_denuncia = value
+
 def initial_admin(data):
     a1 = Admin('admin_1','abc123','admin_1@email.com','1111')
     a2 = Admin('admin_2','abc123','admin_2@email.com','2222')
@@ -29,3 +38,7 @@ def initial_admin(data):
     data.lista_admin.append(a1)
     data.lista_admin.append(a2)
     data.lista_admin.append(a3)
+
+def initial_user(data):
+    r1 = Receita('Bolo de Chocolate','Gabi', ['bolo', 'chocolate', 'doce', 'sobremesa'], 'A', 'A', 'A', 'A', 'Um delicioso bolo de chocolate.')
+    u1 = User('Gabi', 'abc123', 'gabi@email.com', )
