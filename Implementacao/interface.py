@@ -150,3 +150,188 @@ def retornar_receita (receita):     # imprimir os dados de uma receita
     print(f"""
             Modo de preparo: {modo_preparo}
     """)
+
+
+########## interface pesquisa
+def menu_nome_receita():
+    nome_usuario = input(" Nome do usuario que pretende acessar: ")
+    nome_receita = input(" Nome da receita: ")
+    return nome_usuario, nome_receita
+
+def menu_pesquisa_receita(lista_total):
+    print(lista_total)
+    pesquisa = input(f"""
+        {"-="*30}
+        ######################
+        # Pesquisar Receitas #
+        ######################
+        {"-="*30}
+            O que iremos cozinhar hoje? 
+
+                *Colocar nome da receita ou palavra chave
+            
+            \n    """).upper()
+    return pesquisa
+
+def menu_denunciar_motivo():
+    motivo = input(f"""
+        {"-="*30}
+        Motivo da denúncia:
+            1 - Contêm conteúdo inapropriado
+            2 - Não é uma receita
+            3 - Receita plagiada
+            0 - Sair
+        {"-="*30}
+        Resposta: """)
+    return motivo
+
+def menu_comando_avaliar():
+    avaliar = input("""
+            Deseja:
+                1 - Avaliar a receita
+                2 - Denunciar a receita
+
+                0 - Não fazer nada
+        """)
+    return avaliar
+
+def menu_verificar_receita_user():
+    comand = input("""
+        1 - Verificar receitas do usuario
+        2 - Deletar receita do usuario
+
+        0 - Exit
+        """)
+    return comand
+
+def menu_nota_receita():
+    nota = input(f"""
+    {"-="*30}
+    Nota da receita (0-10):
+    {"-="*30}
+    Resposta: """)
+    return nota
+
+def menu_lista_denuncia(lista_denuncia):
+    for i in lista_denuncia:
+        for c,v in i.items():      # chave, valor de cada item
+            print(f" Usuário: {c} receita: {v[0]} motivo: {v[1]}")
+    print('-'*40)
+
+def erro404():
+    print(" Dados não encontrados. ") 
+
+def invalid_input():
+    print("Valor inválido. ")
+
+## interface usadas no sistema
+
+def login_senha_novo_nome():
+    login = input(" Email de acesso: ")
+    senha = input(" Senha de acesso: ")
+    novo_nome = input(" Digite o novo parametro: ")
+    return login,senha, novo_nome
+
+def login_senha_email():
+    print("-="*30)
+    login = input("Login: ")
+    senha = input("Senha: ")
+    email = input("Email: ")
+    return login,senha,email
+
+def email_senha():
+    print("-="*30)
+    email = input("Email: ")
+    senha = input("Senha: ")
+    print("-="*30)
+    return email,senha
+
+def menu_alteracao(j):
+    print(f"""
+    {'-'*30}
+        Nome:   {j.login}
+        Email:  {j.email}
+    {'-'*30}
+    """)
+    alteracao = input("""
+        1 - Alterar nome
+        2 - Alterar senha
+        3 - Alterar email
+        4 - Excluir conta
+
+        0 - Sair
+    """)
+    return alteracao
+
+def menu_comando():
+    comand = input(f"""
+    Sistema de Cadastro:
+        A - Cadastrar usuario
+        B - Acessar conta
+        C - Sair
+    {"-="*30}
+    Resposta: """).upper()
+    return comand
+
+
+def menu_comando_user():
+    comand = input(f"""
+{"##"*30}    
+    A - Criar Receita
+    B - Pesquisa
+    C - Minhas Receitas
+    D - Pesquisar uma receita própria
+    E - Minha Conta 
+    
+    F - Sair
+{"-="*30}
+Resposta: """).upper()
+    return comand
+
+def menu_comando_admin():
+    comand = input(f"""
+        Sistema da Administracao:
+            A - Todas as Contas
+            B - Pesquisa
+            C - Denuncias
+            D - Sair
+        {"-="*30}
+        Resposta: """).upper()
+    return comand
+
+
+def menu_alteracao_admin():
+    print('\n  Deseja fazer alguma alteracao?'  )
+    comand = input(f"""
+                A - Excluir uma conta.
+                B - Alterar dados de uma conta.
+                C - Adicionar uma conta admnistrativa.
+                D - Nao, sair.
+                {"-="*30}
+                Resposta: """).upper()  
+    return comand
+
+
+def menu_pesquisa_receitas(data):
+    print("-="*30)
+    print('Pesquisa de Receitas')
+    print("-="*30)
+    login = input(" Email do usuário: ")
+    for usuario_pesquisa in data.lista_users:
+        if login == usuario_pesquisa.login:
+            print(f"Login : {usuario_pesquisa.login}, Email : {usuario_pesquisa.email}, Senha : {usuario_pesquisa.senha}")
+
+def print_denuncias_recebidas():
+    print("-="*30)
+    print('Denuncias Recebidas: ')
+    print("-="*30)
+
+def print_users(aux_user,usuario):
+    print("USERS -="*30)
+    print(f'Usuario {aux_user}, Login : {usuario.login}, Email : {usuario.email}, Senha : {usuario.senha}')
+
+
+def print_amins(aux_adm,admin): 
+    print("ADMIN -="*30)
+    print(f'Admin {aux_adm}, Login : {admin.login}, Email : {admin.email}, Senha : {admin.senha}, Pin : {admin.senha_admin}')
+    print("-="*30)

@@ -1,4 +1,2 @@
-implementar admin
-
-pesquisa
+TODOS OS PRINTs separados de sistema
 
