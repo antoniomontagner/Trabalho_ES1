@@ -4,7 +4,7 @@ from user import Admin
 from bd import BD, initial_admin, initial_user
 from defs import parametros
 
-# from defs import nomequant -> lista_ingredientes
+# from interface import nomequant -> lista_ingredientes
 import sistema as s
 
 def main():
@@ -14,7 +14,7 @@ def main():
     user_atual = 0
     data = BD(lista_admin_, lista_users_, lista_denuncia)
     initial_admin(data)
-    initial_user(data)
+    #initial_user(data)
     normal_user = False
     sair = False
     
