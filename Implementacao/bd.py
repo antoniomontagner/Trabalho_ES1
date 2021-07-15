@@ -1,5 +1,6 @@
 from user import User
 from user import Admin
+from receita import Receita
 
 class BD:
     def __init__(self, lista_admin, lista_users, lista_denuncia):
@@ -40,5 +41,6 @@ def initial_admin(data):
     data.lista_admin.append(a3)
 
 def initial_user(data):
-    r1 = Receita('Bolo de Chocolate','Gabi', ['bolo', 'chocolate', 'doce', 'sobremesa'], 'A', 'A', 'A', 'A', 'Um delicioso bolo de chocolate.')
-    u1 = User('Gabi', 'abc123', 'gabi@email.com', )
+    r1 = Receita('Bolo de Chocolate','Gabi', ['bolo', 'chocolate', 'doce', 'sobremesa'], 'A', 'A', 'A', 'A', 'Um delicioso bolo de chocolate.', 'Leite, ovos,...')
+    u1 = User('Gabi', 'abc123', 'gabi@email.com', [r1])
+    data.lista_users.append(u1)

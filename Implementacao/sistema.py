@@ -35,6 +35,7 @@ def menu_cadastro(data):
         elif comand == "B":
             email,senha = interface.email_senha()
             if len (email) >= 1:
+                erro_pin = 0
                 for i in data.lista_admin:
                     if i.email == email and i.senha == senha:
                         print("Bem vindo, administrador. Por segurança do sistema, favor insira seu pin de administração para prosseguir.")
@@ -43,13 +44,18 @@ def menu_cadastro(data):
                             user_atual = i.login
                         else:
                             print("Pin incorreto")
+                            erro_pin = 1
                             break
-            if data.lista_users:
-                    for i in data.lista_users:
-                        if i.email == email and i.senha == senha:
-                            user_atual = i.login
-            else:
-                interface.invalid_input()
+                    else:
+                        user_atual = 0
+
+                for i in data.lista_users:
+                    if i.email == email and i.senha == senha:
+                        user_atual = i.login
+                    else:
+                        user_atual = 0
+                if user_atual == 0 and erro_pin == 0:
+                    print("Senha ou email incorretos")
 
         elif comand == "C":
             return 'exit'
@@ -71,8 +77,25 @@ def menu_user(user_atual, j, data):
     print(f'Bem vindo, {user_atual}!')
     
     while user_atual == j.login:
-        comand = interface.menu_comando_user()
-        if comand == 'A':
+        comand = input(f"""{"##"*30}    
+    A - Criar Receita
+    B - Pesquisa
+    C - Minhas Receitas
+    D - Pesquisar uma receita própria
+    E - Minha Conta 
+    
+    F - Sair
+{"-="*30}
+Resposta: """).upper()
+
+        if comand == "A":
+            print(f"""
+{"-="*30}
+   ################
+   # Nova Receita #
+   ################
+{"-="*30}
+        """)
             #lista = [] 
             nome,palavras_chave,doce_salgado,gluten,porcoes,n_ingredientes, descricao, modo_preparo =parametros()     #funcao valores
             if len(j.lista_receitas) >= 1:
@@ -89,11 +112,11 @@ def menu_user(user_atual, j, data):
                     food = Receita(nome,user_atual,palavras_chave,doce_salgado,gluten,porcoes,ingre, descricao, modo_preparo)
                     #lista.append(food)
                     j.lista_receitas.append(food)
-            else:
-                ingre = interface.lista_ingredientes(n_ingredientes)
-                food = Receita(nome,user_atual,palavras_chave,doce_salgado,gluten,porcoes,ingre, descricao, modo_preparo)
-                j.lista_receitas.append(food)
-                print
+            # else:
+            #     ingre = defs.lista_ingredientes(n_ingredientes)
+            #     food = Receita(nome,user_atual,palavras_chave,doce_salgado,gluten,porcoes,ingre, descricao, modo_preparo)
+            #     j.lista_receitas.append(food)
+            #     print
 
 
         elif comand == "B":
@@ -101,27 +124,23 @@ def menu_user(user_atual, j, data):
 
         elif comand == "C":
                 print("-="*30)
+                i = 1
                 if len(j.lista_receitas) >= 1:
                     print(f""" 
                         {'-'*30}
                         Minhas Receitas:
-                        
                         """)
                     for receita in j.lista_receitas:
-                        print(f""" 
-                        Nome: {receita.nome}       Descricao: {receita.descricao}
-
-                        """)
-
-        elif comand == "D":
-            print("-="*30)
-            if len(j.lista_receitas) >= 1:
-                nome = input("Nome da Receita: ")
-                for receita in j.lista_receitas:
-                    if receita.nome == nome :
-                        interface.retornar_receita(receita)
-            else:
-                interface.erro404()
+                        print(f"""################\n# RECEITA {i} #\n################\n\nNome: {receita.nome} \n\nIngredientes: {receita.lista_ingredientes} \n\nModo de preparo: {receita.modo_preparo} \n\nDescricao: {receita.descricao} \n\nPalavras Chave: {receita.palavras_chave}
+                            """)
+                        i += 1
+                    alterar = input(f'Deseja alterar alguma receita? \n1 - sim, 2 - não')
+                    if alterar == 1:
+                        receita = ('Qual receita deseja alterar? Insira o número referente à pesquisa.')
+                    else:
+                        pass
+                else:
+                    print("O usuário ainda não possui receitas cadastradas. ")
 
         #login senha, email, alterar e excluir
         elif comand == "E":
