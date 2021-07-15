@@ -239,6 +239,11 @@ def login_senha_email():
     email = input("Email: ")
     return login,senha,email
 
+    display(400, 6000)
+    display.input("login")
+
+
+
 def email_senha():
     print("-="*30)
     email = input("Email: ")

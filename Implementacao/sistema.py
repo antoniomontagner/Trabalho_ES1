@@ -3,16 +3,16 @@ from receita import Receita
 from user import User
 from user import Admin
 from bd import BD
-from interface import erro404, parametros
+from interface import parametros
 import interface
 import pesquisa
 
 def menu_cadastro(data):
     user_atual = 0
     while user_atual == 0 :
-        comand = interface.menu_comando()
+        comand = menu_comando()
         if comand == "A":
-            login,senha,email = interface.login_senha_email()
+            login,senha,email = login_senha_email()
             if len(email) >= 1:
                 aux = ""
                 for i in data.lista_users:
@@ -33,7 +33,7 @@ def menu_cadastro(data):
         
 
         elif comand == "B":
-            email,senha = interface.email_senha()
+            email,senha = email_senha()
             if len (email) >= 1:
                 erro_pin = 0
                 for i in data.lista_admin:
@@ -62,7 +62,7 @@ def menu_cadastro(data):
             break
                 
         else:
-            interface.invalid_input()
+            pass
 
     return user_atual
 
@@ -126,17 +126,19 @@ Resposta: """).upper()
                 print("-="*30)
                 i = 1
                 if len(j.lista_receitas) >= 1:
-                    print(f""" 
-                        {'-'*30}
-                        Minhas Receitas:
-                        """)
+                    print(f"""\nMinhas Receitas:\n""")
                     for receita in j.lista_receitas:
-                        print(f"""################\n# RECEITA {i} #\n################\n\nNome: {receita.nome} \n\nIngredientes: {receita.lista_ingredientes} \n\nModo de preparo: {receita.modo_preparo} \n\nDescricao: {receita.descricao} \n\nPalavras Chave: {receita.palavras_chave}
+                        print(f"""#############\n# RECEITA {i} #\n#############\n\nNome: {receita.nome} \n\nIngredientes: {receita.lista_ingredientes} \n\nModo de preparo: {receita.modo_preparo} \n\nDescricao: {receita.descricao} \n\nPalavras Chave: {receita.palavras_chave}
                             """)
                         i += 1
-                    alterar = input(f'Deseja alterar alguma receita? \n1 - sim, 2 - não')
-                    if alterar == 1:
-                        receita = ('Qual receita deseja alterar? Insira o número referente à pesquisa.')
+                    alterar = input(f'Deseja alterar alguma receita? \n1 - Sim, 2 - Não\nResposta: ')
+                    if alterar == '1':
+                        rec_escolhida = int(input('Insira o número referente à receita que deseja alterar:\n'))
+                        if (rec_escolhida + 1) <= len(j.lista_receitas):
+                                i = rec_escolhida
+                                rec_escolhida = j.lista_receitas[i]
+                                print(rec_escolhida)
+
                     else:
                         pass
                 else:
@@ -145,23 +147,23 @@ Resposta: """).upper()
         #login senha, email, alterar e excluir
         elif comand == "E":
             while True:
-                alteracao = interface.menu_alteracao(j)
+                alteracao = menu_alteracao(j)
                 if alteracao == '1':
-                    login,senha,novo_nome = interface.login_senha_novo_nome()
+                    login,senha,novo_nome = login_senha_novo_nome()
                     for usuarios in data.lista_users:
                         if login == usuarios.email:
                             if senha == usuarios.senha:
                                 usuarios.login = novo_nome
                 
                 elif alteracao == '2':
-                    login,senha,novo_senha = interface.login_senha_novo_nome()
+                    login,senha,novo_senha = login_senha_novo_nome()
                     for usuarios in data.lista_users:
                         if login == usuarios.email:
                             if senha == usuarios.senha:
                                 usuarios.senha = novo_senha   
                 
                 elif alteracao == '3':
-                    login,senha,novo_email = interface.login_senha_novo_nome() 
+                    login,senha,novo_email = login_senha_novo_nome() 
                     for usuarios in data.lista_users:
                         if login == usuarios.email:
                             if senha == usuarios.senha:
@@ -178,29 +180,32 @@ Resposta: """).upper()
                 elif alteracao == '0':
                     break
                 else:
-                    interface.invalid_input()   
+                    print(" Comando inválido. ")    
 
         elif comand == "F":
             user_atual = 0
 
         else:
-            interface.invalid_input()
+            print(" Comando inválido. ")
 
 
 def menu_admin(user_atual, i, data):
     while user_atual == i.login:
-        comand = interface.menu_comando_admin()
+        comand = menu_comando_admin()
         if comand == "A":
             aux_user = 1
             aux_adm = 1
             for usuario in data.lista_users:
-                interface.print_users(aux_user,usuario)
+                print("USERS -="*30)
+                print(f'Usuario {aux_user}, Login : {usuario.login}, Email : {usuario.email}, Senha : {usuario.senha}')
                 aux_user += 1
             for admin in data.lista_admin:
-                interface.print_amins(aux_adm,admin)
+                print("ADMIN -="*30)
+                print(f'Admin {aux_adm}, Login : {admin.login}, Email : {admin.email}, Senha : {admin.senha}, Pin : {admin.senha_admin}')
+                print("-="*30)
                 aux_adm += 1
 
-            alteracao = interface.menu_alteracao_admin()
+            alteracao = menu_alteracao_admin()
             if alteracao == 'A':
                 login = input(" Email do usuário: ")
                 for usuario_pesquisa in data.lista_users:
@@ -213,17 +218,113 @@ def menu_admin(user_atual, i, data):
             elif alteracao == 'D':
                 print("Sair")
             else:
-                interface.invalid_input()
+                pass
 
         elif comand == "B":
-            interface.menu_pesquisa_receitas(data)
+            print("-="*30)
+            print('Pesquisa de Receitas')
+            print("-="*30)
+            login = input(" Email do usuário: ")
+            for usuario_pesquisa in data.lista_users:
+                if login == usuario_pesquisa.login:
+                    print(f"Login : {usuario_pesquisa.login}, Email : {usuario_pesquisa.email}, Senha : {usuario_pesquisa.senha}")
 
         elif comand == "C":
-            interface.print_denuncias_recebidas()
+            print("-="*30)
+            print('Denuncias Recebidas: ')
             pesquisa.acessar_denuncias(data.lista_denuncia, data.lista_users)    # denuncias nao esta funcionando direito
+            print("-="*30)
 
         elif comand == "D":
             user_atual = 0
 
         else:
-            interface.erro404()
+            print(" Comando inválido. ")
+
+
+## interface usadas no sistema
+
+def login_senha_novo_nome():
+    login = input(" Email de acesso: ")
+    senha = input(" Senha de acesso: ")
+    novo_nome = input(" Digite o novo parametro: ")
+    return login,senha, novo_nome
+
+def login_senha_email():
+    print("-="*30)
+    login = input("Login: ")
+    senha = input("Senha: ")
+    email = input("Email: ")
+    return login,senha,email
+
+def email_senha():
+    print("-="*30)
+    email = input("Email: ")
+    senha = input("Senha: ")
+    print("-="*30)
+    return email,senha
+
+def menu_alteracao(j):
+    print(f"""
+    {'-'*30}
+        Nome:   {j.login}
+        Email:  {j.email}
+    {'-'*30}
+    """)
+    alteracao = input("""
+        1 - Alterar nome
+        2 - Alterar senha
+        3 - Alterar email
+        4 - Excluir conta
+
+        0 - Sair
+    """)
+    return alteracao
+
+def menu_comando():
+    comand = input(f"""
+    Sistema de Cadastro:
+        A - Cadastrar usuario
+        B - Acessar conta
+        C - Sair
+    {"-="*30}
+    Resposta: """).upper()
+    return comand
+
+
+def menu_comando_user():
+    comand = input(f"""
+{"##"*30}    
+    A - Criar Receita
+    B - Pesquisa
+    C - Minhas Receitas
+    D - Pesquisar uma receita própria
+    E - Minha Conta 
+    
+    F - Sair
+{"-="*30}
+Resposta: """).upper()
+    return comand
+
+def menu_comando_admin():
+    comand = input(f"""
+        Sistema da Administracao:
+            A - Todas as Contas
+            B - Pesquisa
+            C - Denuncias
+            D - Sair
+        {"-="*30}
+        Resposta: """).upper()
+    return comand
+
+
+def menu_alteracao_admin():
+    print('\n  Deseja fazer alguma alteracao?'  )
+    comand = input(f"""
+                A - Excluir uma conta.
+                B - Alterar dados de uma conta.
+                C - Adicionar uma conta admnistrativa.
+                D - Nao, sair.
+                {"-="*30}
+                Resposta: """).upper()  
+    return comand
