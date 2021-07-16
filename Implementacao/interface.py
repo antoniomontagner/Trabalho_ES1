@@ -224,6 +224,7 @@ def erro404():
 def invalid_input():
     print("Valor inválido. ")
 
+
 ## interface usadas no sistema
 
 def login_senha_novo_nome():
@@ -238,11 +239,6 @@ def login_senha_email():
     senha = input("Senha: ")
     email = input("Email: ")
     return login,senha,email
-
-    display(400, 6000)
-    display.input("login")
-
-
 
 def email_senha():
     print("-="*30)
@@ -316,27 +312,30 @@ def menu_alteracao_admin():
                 Resposta: """).upper()  
     return comand
 
+def menu_input_pin():
+    print("Bem vindo, administrador. Por segurança do sistema, favor insira seu pin de administração para prosseguir.")
+    pin = input("Pin: ")
+    return pin
 
-def menu_pesquisa_receitas(data):
-    print("-="*30)
-    print('Pesquisa de Receitas')
-    print("-="*30)
-    login = input(" Email do usuário: ")
-    for usuario_pesquisa in data.lista_users:
-        if login == usuario_pesquisa.login:
-            print(f"Login : {usuario_pesquisa.login}, Email : {usuario_pesquisa.email}, Senha : {usuario_pesquisa.senha}")
+def interface_menu_user():
+    comand = input(f"""{"##"*30}    
+    A - Criar Receita
+    B - Pesquisa
+    C - Minhas Receitas
+    D - Pesquisar uma receita própria
+    E - Minha Conta 
+    
+    F - Sair
+    {"-="*30}
+    Resposta: """).upper()
+    return comand
 
-def print_denuncias_recebidas():
-    print("-="*30)
-    print('Denuncias Recebidas: ')
-    print("-="*30)
-
-def print_users(aux_user,usuario):
-    print("USERS -="*30)
-    print(f'Usuario {aux_user}, Login : {usuario.login}, Email : {usuario.email}, Senha : {usuario.senha}')
-
-
-def print_amins(aux_adm,admin): 
+def menu_lista_admin(aux_adm,admin):
     print("ADMIN -="*30)
     print(f'Admin {aux_adm}, Login : {admin.login}, Email : {admin.email}, Senha : {admin.senha}, Pin : {admin.senha_admin}')
     print("-="*30)
+
+
+def menu_lista_user(aux_user,usuario):
+    print("USERS -="*30)
+    print(f'Usuario {aux_user}, Login : {usuario.login}, Email : {usuario.email}, Senha : {usuario.senha}')
