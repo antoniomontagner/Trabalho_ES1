@@ -24,3 +24,12 @@ def menu_cadastro(data):
                      
             print("-="*30)
         
+
+
+nao ta pedindo os ingredientes, so o numero
+
+
+sistema "else" linha 99 dava erro
+
+alterar dados do usuario, se a senha e email tiver errado ainda pede o novo parametro
+

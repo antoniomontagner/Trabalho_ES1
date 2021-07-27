@@ -1,19 +1,21 @@
-from receita import Receita
-from user import User #
+#from receita import Receita
+#from user import User #
 import interface
 
 def pesquisar_receita(data):
 
     lista_total = []                       #   lista de todas as receitas
     for i in data.lista_users:
-        for j in i:
-            lista_total.append(j.lista_receitas)
+        #for j in i:
+        lista_total.append(i.lista_receitas)
+        print(i.lista_receitas)
     pesquisa = interface.menu_pesquisa_receita(lista_total)
 
     #for receita in lista_total: 
-    for receita_encontrada in lista_total:
+    for receita_encontrada in lista_total[0]:
         if len (receita_encontrada.palavras_chave) > 0:
             for palavra in receita_encontrada.palavras_chave:
+                print(palavra,pesquisa)
                 if pesquisa == palavra:             #imprimir a uma tabela sobre a receita
                     interface.retornar_receita(receita_encontrada)
                     denunciar_avaliar(receita_encontrada,data.lista_denuncia)       # lista de denuncia
@@ -38,7 +40,7 @@ def avaliar_receita(receita):        # para avaliar uma receita
 
 def denunciar_receita(receita, lista_denuncia:list):
     motivo = ''
-    while len(motivo<=0):
+    while len(motivo) <=0 :
         denuncia = {}
         motivo = interface.menu_denunciar_motivo()
 

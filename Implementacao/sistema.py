@@ -81,6 +81,7 @@ def menu_user(user_atual, j, data):
         if comand == "A":
             #lista = [] 
             nome,palavras_chave,doce_salgado,gluten,porcoes,n_ingredientes, descricao, modo_preparo =parametros()     #funcao valores
+            print(j.lista_receitas)
             if len(j.lista_receitas) >= 1:
                 aux = ""
                 print(j.lista_receitas)
@@ -95,11 +96,11 @@ def menu_user(user_atual, j, data):
                     food = Receita(nome,user_atual,palavras_chave,doce_salgado,gluten,porcoes,ingre, descricao, modo_preparo)
                     #lista.append(food)
                     j.lista_receitas.append(food)
-            # else:
-            #     ingre = defs.lista_ingredientes(n_ingredientes)
-            #     food = Receita(nome,user_atual,palavras_chave,doce_salgado,gluten,porcoes,ingre, descricao, modo_preparo)
-            #     j.lista_receitas.append(food)
-            #     print
+            else:
+                ingre = interface.lista_ingredientes(n_ingredientes)           #funcao que retorna uma lista dos ingredientes que vai usar
+                food = Receita(nome,user_atual,palavras_chave,doce_salgado,gluten,porcoes,ingre, descricao, modo_preparo)
+                #lista.append(food)
+                j.lista_receitas.append(food)
 
 
         elif comand == "B":
@@ -120,6 +121,8 @@ def menu_user(user_atual, j, data):
                                 i = rec_escolhida
                                 rec_escolhida = j.lista_receitas[i]
                                 print(rec_escolhida)
+                        else:
+                            print("Inválido. ")
                     else:
                         pass
                 else:
