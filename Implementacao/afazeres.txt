@@ -11,3 +11,8 @@ alterar dados do usuario, se a senha e email tiver errado ainda pede o novo para
 sistema.py", line 117
 
 a palavra pesquisada nunca ta sendo igual à palavra-chave
+
+
+da para substituir os prints de erro pelo retorno_print()
+
+projeto de arq logica tem que arrumar as classes ( que estao como defs)

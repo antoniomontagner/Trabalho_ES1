@@ -87,7 +87,8 @@ def menu_user(user_atual, j, data):
                     if receita.nome == nome:
                         aux = "S"
                 if aux == "S":
-                    interface.retorno_print("\n ~~ Nome já existente ~~ ")
+                    interface.retorno_print(
+                        "\n ~~ Nome já existente, cadastre novamente.  ~~ \n")
                 else:
                     # funcao que retorna uma lista dos ingredientes que vai usar
                     ingre = interface.lista_ingredientes(n_ingredientes)
@@ -126,7 +127,8 @@ def menu_user(user_atual, j, data):
                 else:
                     pass
             else:
-                interface.retorno_print("O usuário ainda não possui receitas cadastradas. ")
+                interface.retorno_print(
+                    "O usuário ainda não possui receitas cadastradas. ")
 
         # login senha, email, alterar e excluir
         elif comand == "D":
