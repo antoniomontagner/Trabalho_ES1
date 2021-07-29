@@ -1,51 +1,5 @@
 from receita import Receita
 
-#def tabela(lista_receita):
-#    lis = lista_receita[:]
-#    
-#    print(f"""
-#    {"#"*60}
-#    #{"DOCE":^29}|{"SALGADO":^28}#
-#    #{"-"*29}+{"-"*28}#
-#    #{"QUENTE":^14}|{"FRIO":^14}|{"QUENTE":^13}|{"FRIO":^14}#
-#    #{"-"*14}+{"-"*14}+{"-"*13}+{"-"*14}#""")
-#    cont = 0
-#
-#    for i in lis:
-#        cont += 1
-#        doce_quente = ""
-#        doce_frio = ""
-#        salgado_quente = ""
-#        salgado_frio = ""
-#        if i.doce_salgado == "A" and i.hot_cold == "A":
-#            if len(i.nome) >= 12:
-#                doce_quente = i.nome[0:12]
-#            else:
-#                doce_quente = i.nome
-#
-#        elif i.doce_salgado == "A" and i.hot_cold == "B":
-#            if len(i.nome) >= 12:
-#                doce_frio = i.nome[0:12]
-#            else:
-#                doce_frio = i.nome
-#
-#        elif i.doce_salgado == "B" and i.hot_cold == "A":
-#            if len(i.nome) >= 12:
-#                salgado_quente = i.nome[0:12]
-#            else:
-#                salgado_quente = i.nome
-#
-#        elif i.doce_salgado == "B" and i.hot_cold == "B":
-#            if len(i.nome) >= 12:
-#                salgado_frio = i.nome[0:12]
-#            else:
-#                salgado_frio = i.nome
-#        
-#        print(f""" {cont:^3}#{doce_quente:^14}|{doce_frio:^14}|{salgado_quente:^13}|{salgado_frio:^14}#""")
-#
-#    print(f"""    {"#"*60}""")
-
-
 def parametros():
 #nome
     nome = input("Nome da comida: ")
@@ -281,10 +235,9 @@ def menu_comando_user():
     A - Criar Receita
     B - Pesquisa
     C - Minhas Receitas
-    D - Pesquisar uma receita própria
-    E - Minha Conta 
+    D - Minha Conta 
     
-    F - Sair
+    E - Sair
 {"-="*30}
 Resposta: """).upper()
     return comand

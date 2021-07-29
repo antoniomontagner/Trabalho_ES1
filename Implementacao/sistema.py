@@ -83,9 +83,7 @@ def menu_user(user_atual, j, data):
             nome,palavras_chave,doce_salgado,gluten,porcoes,n_ingredientes, descricao, modo_preparo =parametros()     #funcao valores
             if len(j.lista_receitas) >= 1:
                 aux = ""
-                print(j.lista_receitas)
                 for receita in j.lista_receitas:
-                    print(receita)
                     if receita.nome == nome:
                         aux = "S"
                 if aux == "S":
@@ -126,7 +124,7 @@ def menu_user(user_atual, j, data):
                     print("O usuário ainda não possui receitas cadastradas. ")
 
         #login senha, email, alterar e excluir
-        elif comand == "E":
+        elif comand == "D":
             while True:
                 alteracao = interface.menu_alteracao(j)
                 if alteracao == '1':
@@ -163,7 +161,7 @@ def menu_user(user_atual, j, data):
                 else:
                     interface.invalid_input()  
 
-        elif comand == "F":
+        elif comand == "E":
             user_atual = 0
 
         else:
@@ -210,6 +208,7 @@ def menu_admin(user_atual, i, data):
         elif comand == "C":
             print("-="*30)
             print('Denuncias Recebidas: ')
+            
             pesquisa.acessar_denuncias(data.lista_denuncia, data.lista_users)    # denuncias nao esta funcionando direito
             print("-="*30)
 

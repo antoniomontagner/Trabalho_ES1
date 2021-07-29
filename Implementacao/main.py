@@ -13,7 +13,7 @@ def main():
     user_atual = 0
     data = BD(lista_admin_, lista_users_, lista_denuncia)
     initial_admin(data)
-    #initial_user(data)
+    initial_user(data)
     normal_user = False
     sair = False
     
