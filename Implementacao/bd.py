@@ -2,6 +2,7 @@ from user import User
 from user import Admin
 from receita import Receita
 
+
 class BD:
     def __init__(self, lista_admin, lista_users, lista_denuncia):
         self.lista_admin = lista_admin
@@ -15,7 +16,7 @@ class BD:
     @lista_admin.setter
     def lista_admin(self, value):
         self._lista_admin = value
-    
+
     @property
     def lista_users(self):
         return self._lista_users
@@ -32,15 +33,18 @@ class BD:
     def lista_denuncia(self, value):
         self._lista_denuncia = value
 
+
 def initial_admin(data):
-    a1 = Admin('admin_1','abc123','admin_1@email.com','1111')
-    a2 = Admin('admin_2','abc123','admin_2@email.com','2222')
-    a3 = Admin('admin_3','abc123','admin_3@email.com','3333') 
+    a1 = Admin('admin_1', 'abc123', 'admin_1@email.com', '1111')
+    a2 = Admin('admin_2', 'abc123', 'admin_2@email.com', '2222')
+    a3 = Admin('admin_3', 'abc123', 'admin_3@email.com', '3333')
     data.lista_admin.append(a1)
     data.lista_admin.append(a2)
     data.lista_admin.append(a3)
 
+
 def initial_user(data):
-    r1 = Receita('Bolo de Chocolate','Gabi', ['bolo', 'chocolate', 'doce', 'sobremesa'], 'A', 'A', 'A', 'A', 'Um delicioso bolo de chocolate.', 'Leite, ovos,...')
-    u1 = User('Gabi', 'abc123', 'gabi@email.com', [r1])
-    data.lista_users.append(u1)
+    #r1 = Receita('Bolo de Chocolate','Gabi', ['bolo', 'chocolate', 'doce', 'sobremesa'], 'A', 'A', 'A', 'A', 'Um delicioso bolo de chocolate.', 'Leite, ovos,...')
+    #u1 = User('Gabi', 'abc123', 'gabi@email.com', [r1])
+    # data.lista_users.append(u1)
+    pass

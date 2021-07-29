@@ -16,3 +16,9 @@ a palavra pesquisada nunca ta sendo igual à palavra-chave
 da para substituir os prints de erro pelo retorno_print()
 
 projeto de arq logica tem que arrumar as classes ( que estao como defs)
+
+
+
+ALTERAR RECEITAS NAO ESTA PEGANDO A RECEITA certa
+
+PESQUISA SEM NENHUMA RECEITA REGISTRADA FICA EM LOOP

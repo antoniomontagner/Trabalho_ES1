@@ -1,15 +1,18 @@
 from receita import Receita
 
+
 def retorno_print(palavra):
     print(palavra)
 
 # parametros para criar receita #####
+
+
 def parametros():
-#nome
+    # nome
     nome = input("Nome da comida: ")
-#palavras_chave
+# palavras_chave
     palavras_chave = []
-    while 0>=len(palavras_chave) or 100>=len(palavras_chave) :
+    while 0 >= len(palavras_chave) or 100 >= len(palavras_chave):
         comand = input(f"""
         {"-="*30}
             1 -Inserir palavra chave
@@ -24,7 +27,7 @@ def parametros():
         else:
             print("Input inválido. ")
 
-#doce ou salgado
+# doce ou salgado
     doce_salgado = ''
     while doce_salgado != "A" and doce_salgado != "B":
         doce_salgado = input(f"""
@@ -35,7 +38,7 @@ def parametros():
 {"-="*30}
         Resposta: """).upper()
 
-#contem gluten
+# contem gluten
     gluten = ''
     while gluten != "A" and gluten != "B":
         gluten = input(f"""
@@ -46,8 +49,6 @@ def parametros():
 {"-="*30}
     Resposta: """).upper()
 
-
-    
     porcoes = ''
     while porcoes != "A" and porcoes != "B":
         porcoes = input(f"""
@@ -58,7 +59,7 @@ def parametros():
         B - mais de 2 pessoas 
 {"-="*30}
     Resposta: """).upper()
-    
+
     modo_preparo = input(" Modo de preparo. ")
 
     descricao = input("Descrição da receita: ")
@@ -71,10 +72,11 @@ def parametros():
         except ValueError:
             print("ERRO. Você não digitou um número!")
 
-    return nome,palavras_chave,doce_salgado,gluten,porcoes,n_ingredientes, descricao, modo_preparo
+    return nome, palavras_chave, doce_salgado, gluten, porcoes, n_ingredientes, descricao, modo_preparo
 
 
-def lista_ingredientes(n_ingredientes):      #   INGREDIENTES   atualmente uma lista de dicionario
+# INGREDIENTES   atualmente uma lista de dicionario
+def lista_ingredientes(n_ingredientes):
     lista = []
     for i in range(n_ingredientes):
         dic = {}
@@ -86,8 +88,8 @@ def lista_ingredientes(n_ingredientes):      #   INGREDIENTES   atualmente uma l
     return lista
 
 
-def retornar_receita (receita):     # imprimir os dados de uma receita
-    nome, doce_salgado, avaliacoes, gluten, porcoes, lista_ingredientes, descricao, modo_preparo =  receita.retorno()
+def retornar_receita(receita):     # imprimir os dados de uma receita
+    nome, doce_salgado, avaliacoes, gluten, porcoes, lista_ingredientes, descricao, modo_preparo = receita.retorno()
 
     print(f"""
     Nome da receita: {nome}
@@ -104,7 +106,7 @@ def retornar_receita (receita):     # imprimir os dados de uma receita
             Numero de ingredientes: {len(lista_ingredientes)} 
                     Ingredientes: """)
     for k in lista_ingredientes:
-        for c,v in k.items():                            
+        for c, v in k.items():
             print(f"""          {"Nome:":>48} {c:<15}{" ":8}quantidade: {v}""")
     print(f"""
             Modo de preparo: {modo_preparo}
@@ -117,6 +119,7 @@ def menu_nome_receita():
     nome_receita = input(" Nome da receita: ")
     return nome_usuario, nome_receita
 
+
 def menu_pesquisa_receita(lista_total):
     # print(lista_total)
     pesquisa = input(f"""
@@ -126,11 +129,12 @@ def menu_pesquisa_receita(lista_total):
         ######################
         {"-="*30}
             O que iremos cozinhar hoje? 
+                    *Colocar nome da receita ou palavra chave
+                        F - Para sair
 
-                *Colocar nome da receita ou palavra chave
-            
             \n    """).upper()
     return pesquisa
+
 
 def menu_denunciar_motivo():
     motivo = input(f"""
@@ -144,6 +148,7 @@ def menu_denunciar_motivo():
         Resposta: """)
     return motivo
 
+
 def menu_comando_avaliar():
     avaliar = input("""
             Deseja:
@@ -154,6 +159,7 @@ def menu_comando_avaliar():
         """)
     return avaliar
 
+
 def menu_verificar_receita_user():
     comand = input("""
         1 - Verificar receitas do usuario
@@ -163,6 +169,7 @@ def menu_verificar_receita_user():
         """)
     return comand
 
+
 def menu_nota_receita():
     nota = float(input(f"""
     {"-="*30}
@@ -171,17 +178,21 @@ def menu_nota_receita():
     Resposta: """))
     return nota
 
+
 def menu_lista_denuncia(lista_denuncia):
     for i in lista_denuncia:
-        for c,v in i.items():      # chave, valor de cada item
+        for c, v in i.items():      # chave, valor de cada item
             print(f" Usuário: {c} receita: {v[0]} motivo: {v[1]}")
     print('-'*40)
 
+
 def erro404():
-    print(" Dados não encontrados. ") 
+    print(" Dados não encontrados. ")
+
 
 def invalid_input():
     print("Valor inválido. ")
+
 
 def sem_resposta_continuar_pesquisa():
     print("0 receitas encontradas.")
@@ -190,25 +201,29 @@ def sem_resposta_continuar_pesquisa():
 
 ## interface usadas no sistema      ##########################
 
+
 def login_senha_novo_nome():
     login = input(" Email de acesso: ")
     senha = input(" Senha de acesso: ")
     novo_nome = input(" Digite o novo parametro: ")
-    return login,senha, novo_nome
+    return login, senha, novo_nome
+
 
 def login_senha_email():
     print("-="*30)
     login = input("Login: ")
     senha = input("Senha: ")
     email = input("Email: ")
-    return login,senha,email
+    return login, senha, email
+
 
 def email_senha():
     print("-="*30)
     email = input("Email: ")
     senha = input("Senha: ")
     print("-="*30)
-    return email,senha
+    return email, senha
+
 
 def menu_alteracao(j):
     print(f"""
@@ -226,6 +241,7 @@ def menu_alteracao(j):
         0 - Sair
     """)
     return alteracao
+
 
 def menu_comando():
     comand = input(f"""
@@ -251,6 +267,7 @@ def menu_comando_user():
 Resposta: """).upper()
     return comand
 
+
 def menu_comando_admin():
     comand = input(f"""
         Sistema da Administracao:
@@ -264,20 +281,22 @@ def menu_comando_admin():
 
 
 def menu_alteracao_admin():
-    print('\n  Deseja fazer alguma alteracao?'  )
+    print('\n  Deseja fazer alguma alteracao?')
     comand = input(f"""
                 A - Excluir uma conta.
                 B - Alterar dados de uma conta.
                 C - Adicionar uma conta admnistrativa.
                 D - Nao, sair.
                 {"-="*30}
-                Resposta: """).upper()  
+                Resposta: """).upper()
     return comand
+
 
 def menu_input_pin():
     print("Bem vindo, administrador. Por segurança do sistema, favor insira seu pin de administração para prosseguir.")
     pin = input("Pin: ")
     return pin
+
 
 def interface_menu_user():
     comand = input(f"""{"##"*30}    
@@ -291,22 +310,28 @@ def interface_menu_user():
     Resposta: """).upper()
     return comand
 
-def menu_lista_admin(aux_adm,admin):
+
+def menu_lista_admin(aux_adm, admin):
     print("ADMIN -="*30)
     print(f'Admin {aux_adm}, Login : {admin.login}, Email : {admin.email}, Senha : {admin.senha}, Pin : {admin.senha_admin}')
     print("-="*30)
 
 
-def menu_lista_user(aux_user,usuario):
+def menu_lista_user(aux_user, usuario):
     print("USERS -="*30)
-    print(f'Usuario {aux_user}, Login : {usuario.login}, Email : {usuario.email}, Senha : {usuario.senha}')
+    print(
+        f'Usuario {aux_user}, Login : {usuario.login}, Email : {usuario.email}, Senha : {usuario.senha}')
+
 
 def deseja_alterar_receita():
-    alterar = input(f'Deseja alterar alguma receita? \n1 - Sim, 2 - Não\nResposta: ')
+    alterar = input(
+        f'Deseja alterar alguma receita? \n1 - Sim, 2 - Não\nResposta: ')
     return alterar
 
+
 def receita_para_alterar():
-    rec_escolhida = int(input('Insira o número referente à receita que deseja alterar:\n'))
+    rec_escolhida = int(
+        input('Insira o número referente à receita que deseja alterar:\n'))
     return rec_escolhida
 
 

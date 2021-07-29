@@ -5,33 +5,42 @@ import interface
 
 def pesquisar_receita(data):
 
-    lista_total = []  # lista de todas as receitas
+    lista_total = []  # era uma lista de listas das receitas dos usuarios agora é uma lista com apenas receitas
     for i in data.lista_users:
-        # for j in i:
-        lista_total.append(i.lista_receitas)
-        # print(i.lista_receitas)
+        for j in i.lista_receitas:
+            lista_total.append(j)
+
     continuar = True
-    while(continuar):
+    while continuar:
         pesquisa = interface.menu_pesquisa_receita(lista_total)
 
         # for receita in lista_total:
-        for receita_encontrada in lista_total:
-            for receita in receita_encontrada:
-                if len(receita.palavras_chave) > 0:
-                    for palavra in receita.palavras_chave:
-                        # print(pesquisa, palavra)
-                        if pesquisa == palavra:  # imprimir a uma tabela sobre a receita
-                            interface.retornar_receita(receita_encontrada)
-                            # lista de denuncia
-                            denunciar_avaliar(
-                                receita_encontrada, data.lista_denuncia)
+        for receita in lista_total:  # uma lissta da lista
+            # for receita in receita_encontrada:  # a receita da lita .palavra_chave
+            if len(receita.palavras_chave) > 0:
+                for palavra in receita.palavras_chave:
+                    if pesquisa == palavra:  # imprimir a uma tabela sobre a receita
+                        interface.retornar_receita(receita)
+                        # lista de denuncia
+                        denunciar_avaliar(
+                            receita, data.lista_denuncia)
+                    elif pesquisa == 'F':
+                        sair = interface.sem_resposta_continuar_pesquisa()
+                        if sair == '2':
+                            continuar = False
+                            break
                         else:
-                            sair = interface.sem_resposta_continuar_pesquisa()
-                            if sair == '2':
-                                continuar = False
-                                break
-                            else:
-                                break
+                            break
+
+                    else:
+                        sair = interface.sem_resposta_continuar_pesquisa()
+                        if sair == '2':
+                            continuar = False
+                            break
+                        else:
+                            break
+            else:
+                interface.retorno_print("Sem receitas no banco. ")
 
 
 def avaliar_receita(receita):        # para avaliar uma receita
