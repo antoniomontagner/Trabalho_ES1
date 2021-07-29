@@ -71,7 +71,7 @@ def parametros():
     while doce_salgado != "A" and doce_salgado != "B":
         doce_salgado = input(f"""
 {"-="*30}
-        O comida é:   
+        A receita é:   
             A - Doce
             B - Salgado
 {"-="*30}
