@@ -129,7 +129,11 @@ def menu_user(user_atual, j, data):
 
         #login senha, email, alterar e excluir
         elif comand == "D":
-            while True:
+            rodando = True
+            while rodando:
+                if user_atual == 0:
+                    rodando = False
+                    break
                 alteracao = interface.menu_alteracao(j)
                 if alteracao == '1':
                     login,senha,novo_nome = interface.login_senha_novo_nome()
@@ -153,13 +157,14 @@ def menu_user(user_atual, j, data):
                                 usuarios.email = novo_email   
                 
                 elif alteracao == '4':
-
+                    login,senha = interface.email_senha() 
                     for usuarios in data.lista_users:
                         if login == usuarios.email:
                             if senha == usuarios.senha:
                                 data.lista_users.remove(usuarios)
                                 user_atual = 0          # excluiu a conta entao sai     # quando deleta o user nao sai da conta mas deleta as coisas
                                 break
+                
                 elif alteracao == '0':
                     break
                 else:

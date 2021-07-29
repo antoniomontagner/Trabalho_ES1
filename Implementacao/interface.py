@@ -84,6 +84,7 @@ def lista_ingredientes(n_ingredientes):      #   INGREDIENTES   atualmente uma l
 
 def retornar_receita (receita):     # imprimir os dados de uma receita
     nome, doce_salgado, avaliacoes, gluten, porcoes, lista_ingredientes, descricao, modo_preparo =  receita.retorno()
+
     print(f"""
     Nome da receita: {nome}
                                                 Legenda:
@@ -113,7 +114,7 @@ def menu_nome_receita():
     return nome_usuario, nome_receita
 
 def menu_pesquisa_receita(lista_total):
-    print(lista_total)
+    # print(lista_total)
     pesquisa = input(f"""
         {"-="*30}
         ######################
@@ -275,10 +276,9 @@ def interface_menu_user():
     A - Criar Receita
     B - Pesquisa
     C - Minhas Receitas
-    D - Pesquisar uma receita própria
-    E - Minha Conta 
+    D - Minha Conta 
     
-    F - Sair
+    E - Sair
     {"-="*30}
     Resposta: """).upper()
     return comand

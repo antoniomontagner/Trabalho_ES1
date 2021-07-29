@@ -8,24 +8,28 @@ def pesquisar_receita(data):
     for i in data.lista_users:
         #for j in i:
         lista_total.append(i.lista_receitas)
-        print(i.lista_receitas)
-    pesquisa = interface.menu_pesquisa_receita(lista_total)
+        # print(i.lista_receitas)
+    continuar = True
+    while(continuar):
+        pesquisa = interface.menu_pesquisa_receita(lista_total)
 
-    #for receita in lista_total: 
-    for receita_encontrada in lista_total[0]:
-        if len (receita_encontrada.palavras_chave) > 0:
-            for palavra in receita_encontrada.palavras_chave:
-                print(palavra,pesquisa)
-                if pesquisa == palavra:             #imprimir a uma tabela sobre a receita
-                    interface.retornar_receita(receita_encontrada)
-                    denunciar_avaliar(receita_encontrada,data.lista_denuncia)       # lista de denuncia
-        else:
-            for receita_encontrada in lista_total:
-                for ingrediente in receita_encontrada.lista_ingredientes:
-                    if pesquisa == ingrediente.keys():
-                        interface.retornar_receita(receita_encontrada)
-                    else:
-                        print("0 receitas encontradas.")
+        #for receita in lista_total: 
+        for receita_encontrada in lista_total:
+            for receita in receita_encontrada:
+                if len (receita.palavras_chave) > 0:
+                    for palavra in receita.palavras_chave:
+                        print(pesquisa, palavra)
+                        if pesquisa == palavra:             #imprimir a uma tabela sobre a receita
+                            interface.retornar_receita(receita_encontrada)
+                            denunciar_avaliar(receita_encontrada,data.lista_denuncia)       # lista de denuncia
+                        else:
+                            print("0 receitas encontradas.")
+                            sair = input('Deseja continuar pesquisando? 1- Sim, 2- Não \nResposta: ')
+                            if sair == '2':
+                                continuar = False
+                                break
+                            else:
+                                break
 
 
 def avaliar_receita(receita):        # para avaliar uma receita

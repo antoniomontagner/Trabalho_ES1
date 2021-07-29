@@ -9,3 +9,5 @@ sistema "else" linha 99 dava erro
 alterar dados do usuario, se a senha e email tiver errado ainda pede o novo parametro
 
 sistema.py", line 117
+
+a palavra pesquisada nunca ta sendo igual à palavra-chave
