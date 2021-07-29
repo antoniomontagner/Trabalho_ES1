@@ -20,7 +20,7 @@ def menu_cadastro(data):
                     if i.email == email:
                         aux = "S"
                 if aux == "S":
-                    interface.retorno_print("Usuário já existente. ")
+                    print("Usuário já existente. ")
                 else:
                     lista_receitas = []  # CRIAR UMA NOVA LISTA PARA CADA USUARIO NOVO
                     x = User(login, senha, email, lista_receitas)
@@ -29,31 +29,31 @@ def menu_cadastro(data):
                 lista_receitas = []  # SE FOR O PRIMEIRO CADASTRO NAO ENTRA NO FOR PARA VERIFICAR O NOME
                 x = User(login, senha, email, lista_receitas)
                 data.lista_users.append(x)
-            interface.retorno_print("-="*30)
+
+            print("-="*30)
 
         elif comand == "B":
             email, senha = interface.email_senha()
+            admin = False
             if len(email) >= 1:
                 erro_pin = 0
                 for i in data.lista_admin:
                     if i.email == email and i.senha == senha:
                         pin = interface.menu_input_pin()
+                        admin = True
                         if i.senha_admin == pin:
                             user_atual = i.login
                         else:
                             interface.invalid_input()
                             erro_pin = 1
-                            break
-                    else:
-                        user_atual = 0
-
-                for i in data.lista_users:
-                    if i.email == email and i.senha == senha:
-                        user_atual = i.login
-                    else:
-                        user_atual = 0
-                if user_atual == 0 and erro_pin == 0:
-                    interface.retorno_print("Senha ou email incorretos")
+                if admin == False:
+                    for i in data.lista_users:
+                        if i.email == email and i.senha == senha:
+                            user_atual = i.login
+                        else:
+                            user_atual = 0
+                    if user_atual == 0 and erro_pin == 0:
+                        print("Senha ou email incorretos")
 
         elif comand == "C":
             return 'exit'
@@ -108,22 +108,24 @@ def menu_user(user_atual, j, data):
             pesquisa.pesquisar_receita(data)
 
         elif comand == "C":
-            interface.retorno_print("-="*30)
+            print("-="*30)
             i = 1
             if len(j.lista_receitas) >= 1:
                 for receita in j.lista_receitas:
-                    interface.retornar_lista_receitas(i, receita)
+                    print(f"""#############\n# RECEITA {i} #\n#############\n\nNome: {receita.nome} \n\nIngredientes: {receita.lista_ingredientes} \n\nModo de preparo: {receita.modo_preparo} \n\nDescricao: {receita.descricao} \n\nPalavras Chave: {receita.palavras_chave}
+                            """)
                     i += 1
-                alterar = interface.deseja_alterar_receita()
+                alterar = input(
+                    f'Deseja alterar alguma receita? \n1 - Sim, 2 - Não\nResposta: ')
                 if alterar == '1':
-                    try:
-                        rec_escolhida = interface.receita_para_alterar()
-                        if (rec_escolhida + 1) <= len(j.lista_receitas):
-                            i = rec_escolhida
-                            rec_escolhida = j.lista_receitas[i]
-                            print(rec_escolhida)
-                    except:
-                        interface.retorno_print("Inválido. ")
+                    rec_escolhida = int(
+                        input('Insira o número referente à receita que deseja alterar:\n'))
+                    if (rec_escolhida + 1) <= len(j.lista_receitas):
+                        i = rec_escolhida
+                        rec_escolhida = j.lista_receitas[i]
+                        print(rec_escolhida)
+                    else:
+                        print("Inválido. ")
                 else:
                     pass
             else:
@@ -132,11 +134,7 @@ def menu_user(user_atual, j, data):
 
         # login senha, email, alterar e excluir
         elif comand == "D":
-            rodando = True
-            while rodando:
-                if user_atual == 0:
-                    rodando = False
-                    break
+            while True:
                 alteracao = interface.menu_alteracao(j)
                 if alteracao == '1':
                     login, senha, novo_nome = interface.login_senha_novo_nome()
@@ -160,7 +158,7 @@ def menu_user(user_atual, j, data):
                                 usuarios.email = novo_email
 
                 elif alteracao == '4':
-                    login, senha = interface.email_senha()
+
                     for usuarios in data.lista_users:
                         if login == usuarios.email:
                             if senha == usuarios.senha:
@@ -168,7 +166,6 @@ def menu_user(user_atual, j, data):
                                 # excluiu a conta entao sai     # quando deleta o user nao sai da conta mas deleta as coisas
                                 user_atual = 0
                                 break
-
                 elif alteracao == '0':
                     break
                 else:
