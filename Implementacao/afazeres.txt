@@ -3,21 +3,17 @@ modelo/inferface
 
 nao ta pedindo os ingredientes, so o numero
 
-
-sistema "else" linha 99 dava erro
+# sistema "else" linha 99 dava erro
 
 alterar dados do usuario, se a senha e email tiver errado ainda pede o novo parametro
 
-sistema.py", line 117
+# "sistema.py", line 117
 
 a palavra pesquisada nunca ta sendo igual à palavra-chave
-
 
 da para substituir os prints de erro pelo retorno_print()
 
 projeto de arq logica tem que arrumar as classes ( que estao como defs)
-
-
 
 ALTERAR RECEITAS NAO ESTA PEGANDO A RECEITA certa
 
