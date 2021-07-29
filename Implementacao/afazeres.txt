@@ -1,30 +1,5 @@
 TODOS OS PRINTs separados de sistema
-
-def menu_cadastro(data):
-    user_atual = 0
-    while user_atual == 0 :
-        comand = interface.menu_comando()
-        if comand == "A":
-            login,senha,email = interface.login_senha_email()
-            if len(email) >= 1:
-                aux = ""
-                for i in data.lista_users:
-                    if i.email == email:
-                        aux = "S"
-                if aux == "S":
-                    print("Usuário já existente. ")
-                else:
-                    lista_receitas = []                        #CRIAR UMA NOVA LISTA PARA CADA USUARIO NOVO
-                    x = User(login,senha,email,lista_receitas) 
-                    data.lista_users.append(x)
-            else:
-                lista_receitas = []            #SE FOR O PRIMEIRO CADASTRO NAO ENTRA NO FOR PARA VERIFICAR O NOME
-                x = User(login,senha,email,lista_receitas)  
-                data.lista_users.append(x)
-                     
-            print("-="*30)
-        
-
+modelo/inferface
 
 nao ta pedindo os ingredientes, so o numero
 
@@ -33,3 +8,4 @@ sistema "else" linha 99 dava erro
 
 alterar dados do usuario, se a senha e email tiver errado ainda pede o novo parametro
 
+sistema.py", line 117

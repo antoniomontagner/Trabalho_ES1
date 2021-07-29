@@ -114,14 +114,15 @@ def menu_user(user_atual, j, data):
                         i += 1
                     alterar = input(f'Deseja alterar alguma receita? \n1 - Sim, 2 - Não\nResposta: ')
                     if alterar == '1':
-                        rec_escolhida = int(input('Insira o número referente à receita que deseja alterar:\n'))
-                        if (rec_escolhida + 1) <= len(j.lista_receitas):
-                                i = rec_escolhida
-                                rec_escolhida = j.lista_receitas[i]
-                                print(rec_escolhida)
-                        else:
+                        try:
+                            rec_escolhida = int(input('Insira o número referente à receita que deseja alterar:\n'))
+                            if (rec_escolhida + 1) <= len(j.lista_receitas):
+                                    i = rec_escolhida
+                                    rec_escolhida = j.lista_receitas[i]
+                                    print(rec_escolhida)
+                        except:
                             print("Inválido. ")
-                    else:
+                    else:   
                         pass
                 else:
                     print("O usuário ainda não possui receitas cadastradas. ")
