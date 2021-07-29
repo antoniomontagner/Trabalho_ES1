@@ -1,5 +1,9 @@
 from receita import Receita
 
+def retorno_print(palavra):
+    print(palavra)
+
+# parametros para criar receita #####
 def parametros():
 #nome
     nome = input("Nome da comida: ")
@@ -107,7 +111,7 @@ def retornar_receita (receita):     # imprimir os dados de uma receita
     """)
 
 
-########## interface pesquisa
+########## interface pesquisa       ##############################
 def menu_nome_receita():
     nome_usuario = input(" Nome do usuario que pretende acessar: ")
     nome_receita = input(" Nome da receita: ")
@@ -179,8 +183,12 @@ def erro404():
 def invalid_input():
     print("Valor inválido. ")
 
+def sem_resposta_continuar_pesquisa():
+    print("0 receitas encontradas.")
+    sair = input('Deseja continuar pesquisando? 1- Sim, 2- Não \nResposta: ')
+    return sair
 
-## interface usadas no sistema
+## interface usadas no sistema      ##########################
 
 def login_senha_novo_nome():
     login = input(" Email de acesso: ")
@@ -292,3 +300,24 @@ def menu_lista_admin(aux_adm,admin):
 def menu_lista_user(aux_user,usuario):
     print("USERS -="*30)
     print(f'Usuario {aux_user}, Login : {usuario.login}, Email : {usuario.email}, Senha : {usuario.senha}')
+
+def deseja_alterar_receita():
+    alterar = input(f'Deseja alterar alguma receita? \n1 - Sim, 2 - Não\nResposta: ')
+    return alterar
+
+def receita_para_alterar():
+    rec_escolhida = int(input('Insira o número referente à receita que deseja alterar:\n'))
+    return rec_escolhida
+
+
+def retornar_lista_receitas(i, receita):
+    print(f"""
+    #############\n
+    # RECEITA {i} #
+    # \n#############\n\n
+    # Nome: {receita.nome} \n\n
+    # Ingredientes: {receita.lista_ingredientes} \n\
+    # Modo de preparo: {receita.modo_preparo} \n\n
+    # Descricao: {receita.descricao} \n\n
+    # Palavras Chave: {receita.palavras_chave}
+                            """)

@@ -2,29 +2,31 @@
 #from user import User #
 import interface
 
+
 def pesquisar_receita(data):
 
-    lista_total = []                       #   lista de todas as receitas
+    lista_total = []  # lista de todas as receitas
     for i in data.lista_users:
-        #for j in i:
+        # for j in i:
         lista_total.append(i.lista_receitas)
         # print(i.lista_receitas)
     continuar = True
     while(continuar):
         pesquisa = interface.menu_pesquisa_receita(lista_total)
 
-        #for receita in lista_total: 
+        # for receita in lista_total:
         for receita_encontrada in lista_total:
             for receita in receita_encontrada:
-                if len (receita.palavras_chave) > 0:
+                if len(receita.palavras_chave) > 0:
                     for palavra in receita.palavras_chave:
-                        print(pesquisa, palavra)
-                        if pesquisa == palavra:             #imprimir a uma tabela sobre a receita
+                        # print(pesquisa, palavra)
+                        if pesquisa == palavra:  # imprimir a uma tabela sobre a receita
                             interface.retornar_receita(receita_encontrada)
-                            denunciar_avaliar(receita_encontrada,data.lista_denuncia)       # lista de denuncia
+                            # lista de denuncia
+                            denunciar_avaliar(
+                                receita_encontrada, data.lista_denuncia)
                         else:
-                            print("0 receitas encontradas.")
-                            sair = input('Deseja continuar pesquisando? 1- Sim, 2- Não \nResposta: ')
+                            sair = interface.sem_resposta_continuar_pesquisa()
                             if sair == '2':
                                 continuar = False
                                 break
@@ -42,14 +44,15 @@ def avaliar_receita(receita):        # para avaliar uma receita
         else:
             interface.invalid_input()
 
-def denunciar_receita(receita, lista_denuncia:list):
+
+def denunciar_receita(receita, lista_denuncia: list):
     motivo = ''
-    while len(motivo) <=0 :
+    while len(motivo) <= 0:
         denuncia = {}
         motivo = interface.menu_denunciar_motivo()
 
-        if motivo in ("1","2","3"):
-            denuncia[receita.nome_usuario]=[receita.nome,motivo]
+        if motivo in ("1", "2", "3"):
+            denuncia[receita.nome_usuario] = [receita.nome, motivo]
             lista_denuncia.append(denuncia)
         elif motivo == "0":
             break
@@ -57,33 +60,36 @@ def denunciar_receita(receita, lista_denuncia:list):
             interface.invalid_input()
             motivo = ''
 
-def denunciar_avaliar(receita,lista_denuncia):
+
+def denunciar_avaliar(receita, lista_denuncia):
     while True:
         comando = interface.menu_comando_avaliar()
         if comando == '1':
             avaliar_receita(receita)
         elif comando == '2':
-            denunciar_receita(receita,lista_denuncia)
+            denunciar_receita(receita, lista_denuncia)
         elif comando == '0':
             break
         else:
             interface.invalid_input()
 
 
-################       funcoes (base) para o administrador
-def acessar_denuncias(lista_denuncia:list, lista_users):
+# funcoes (base) para o administrador
+def acessar_denuncias(lista_denuncia: list, lista_users):
     interface.menu_lista_denuncia(lista_denuncia)
-    
+
     while True:
         comand = interface.menu_verificar_receita_user()
         if comand == '1':
             nome_usuario, nome_receita = interface.menu_nome_receita()
             try:
                 for i in lista_denuncia:
-                    for c,v in i.items():
+                    for c, v in i.items():
                         if nome_usuario == c:
                             if nome_receita == v[0]:
-                                verificar_receitas(nome_usuario, nome_receita, lista_users)  # metodo para retornar os dados
+                                # metodo para retornar os dados
+                                verificar_receitas(
+                                    nome_usuario, nome_receita, lista_users)
             except:
                 interface.erro404()
 
@@ -92,23 +98,27 @@ def acessar_denuncias(lista_denuncia:list, lista_users):
             try:
                 for i in lista_denuncia:
                     dado_encontrado = False
-                    for c,v in i.items():
+                    for c, v in i.items():
                         if nome_usuario == c:
                             if nome_receita == v[0]:
                                 dado_encontrado = True
                     if dado_encontrado:
                         lista_denuncia.pop(i)
                         # colocar o pop da lista do usuario
-                        deletar_receitas(nome_usuario, nome_receita, lista_users)
+                        deletar_receitas(
+                            nome_usuario, nome_receita, lista_users)
             except:
                 interface.erro404()
-        
+
         elif comand == '0':
             break
 
         else:
             interface.invalid_input()
-def verificar_receitas(nome_usuario, nome_receita, lista_users):    # verificar a conta do usuario
+
+
+# verificar a conta do usuario
+def verificar_receitas(nome_usuario, nome_receita, lista_users):
     try:
         for i in lista_users:
             if i.nome == nome_usuario:
@@ -116,9 +126,11 @@ def verificar_receitas(nome_usuario, nome_receita, lista_users):    # verificar 
                     if j.nome == nome_receita:
                         print(f" Receita denunciada: {j}")
     except:
-        interface.erro404()  
+        interface.erro404()
 
-def deletar_receitas(nome_usuario, nome_receita, lista_users):      # deletar a receita do usuario
+
+# deletar a receita do usuario
+def deletar_receitas(nome_usuario, nome_receita, lista_users):
     try:
         for i in lista_users:
             if i.nome == nome_usuario:
@@ -126,4 +138,4 @@ def deletar_receitas(nome_usuario, nome_receita, lista_users):      # deletar a 
                     if j.nome == nome_receita:
                         i.lista_receitas.pop(j)
     except:
-        interface.erro404()   
+        interface.erro404()
