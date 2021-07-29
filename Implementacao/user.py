@@ -28,14 +28,14 @@ class User:
     @email.setter
     def email(self, value):
         self._email = value
-
-    @property
-    def lista_receitas(self):
-         return self._lista_receitas
-
-    @lista_receitas.setter
-    def lista_receitas(self, value):
-        self._lista_receitas = value
+#
+#    @property
+#    def lista_receitas(self):
+#         return self._lista_receitas
+#
+#    @lista_receitas.setter
+#    def lista_receitas(self, value):
+#        self._lista_receitas = value
 
 class Admin(User):
     def __init__(self, login, senha, email, senha_admin):

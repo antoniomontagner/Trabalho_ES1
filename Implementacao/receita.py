@@ -13,7 +13,7 @@ class Receita:
         self.modo_preparo = modo_preparo
 
     def retorno (self):
-        return self.nome, self.doce_salgado, self.media_avaliacao, self.gluten, self.porcoes, self.lista_ingredientes, self.descricao
+        return self.nome, self.doce_salgado, self.media_avaliacao, self.gluten, self.porcoes, self.lista_ingredientes, self.descricao, self.modo_preparo
 
     def avaliar(self, nota):
         self.avaliacoes.append(nota)

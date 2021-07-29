@@ -13,7 +13,7 @@ def parametros():
         {"-="*30}
             Resposta: """).upper()
         if comand == '1':
-            palavra = input("\n Palavra chave: ")
+            palavra = input("\n Palavra chave: ").upper()
             palavras_chave.append(palavra)
         elif comand == '0':
             break
@@ -89,7 +89,7 @@ def retornar_receita (receita):     # imprimir os dados de uma receita
                                                 Legenda:
                         {"#"*53}
         Tipo: {doce_salgado}        |  {"A- Doce":<23} /  {"B- Salgado":<23}|
-        Tipo: {avaliacoes}        |  {" Avaliação ":<23} /  {" de 0 a 10 ":<23}|
+        Avaliações: {avaliacoes:.1f}|  {" Avaliação ":<23} /  {" de 0 a 10 ":<23}|
         Tipo: {gluten}        |  {"A- Com gluten":<23} /  {"B- Sem gluten":<23}|
         Tipo: {porcoes}        |  {"A- Ate de 2 pessoas":<23} /  {"B- Mais de 2 pessoas":<23}|
                         {"#"*53}
@@ -159,11 +159,11 @@ def menu_verificar_receita_user():
     return comand
 
 def menu_nota_receita():
-    nota = input(f"""
+    nota = float(input(f"""
     {"-="*30}
     Nota da receita (0-10):
     {"-="*30}
-    Resposta: """)
+    Resposta: """))
     return nota
 
 def menu_lista_denuncia(lista_denuncia):
