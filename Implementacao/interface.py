@@ -1,4 +1,3 @@
-from defs import lista_ingredientes
 from receita import Receita
 
 
@@ -87,7 +86,8 @@ def parametros():
         dic[ingrediente] = input("Quantia utilizada: ")
         i = i + 1
         lista_ingredientes.append(dic)
-        mais_ingredientes = input('Deseja inserir mais ingredientes? 1- Sim, 2- Não\nResposta: ')
+        mais_ingredientes = input(
+            'Deseja inserir mais ingredientes? 1- Sim, 2- Não\nResposta: ')
         if mais_ingredientes == '2':
             inserir_ingrediente = False
         else:

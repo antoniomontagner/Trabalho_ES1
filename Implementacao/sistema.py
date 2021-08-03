@@ -1,4 +1,3 @@
-from defs import lista_ingredientes
 from receita import Receita
 from user import User
 from user import Admin
@@ -87,12 +86,14 @@ def menu_user(user_atual, j, data):
                     interface.retorno_print(
                         "\n ~~ Nome já existente, cadastre novamente.  ~~ \n")
                 else:
-                    food = Receita(nome, user_atual, palavras_chave, doce_salgado, porcoes, gluten, lista_ingredientes, descricao, modo_preparo)
+                    food = Receita(nome, user_atual, palavras_chave, doce_salgado,
+                                   porcoes, gluten, lista_ingredientes, descricao, modo_preparo)
                     j.lista_receitas.append(food)
             else:
-                food = Receita(nome, user_atual, palavras_chave, doce_salgado, porcoes, gluten, lista_ingredientes, descricao, modo_preparo)
+                food = Receita(nome, user_atual, palavras_chave, doce_salgado,
+                               porcoes, gluten, lista_ingredientes, descricao, modo_preparo)
                 j.lista_receitas.append(food)
-            
+
         elif comand == "B":
             pesquisa.pesquisar_receita(data)
 
@@ -109,7 +110,8 @@ def menu_user(user_atual, j, data):
                     if (rec_escolhida) <= len(j.lista_receitas):
                         i = rec_escolhida - 1
                         rec_escolhida = j.lista_receitas[i]
-                        interface.retorno_print(rec_escolhida) # rec_escolhida é um objeto 
+                        # rec_escolhida é um objeto
+                        interface.retorno_print(rec_escolhida)
 
                         # alterar dados da receita ##########################
 

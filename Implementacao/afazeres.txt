@@ -16,3 +16,4 @@ a palavra pesquisada nunca ta sendo igual à palavra-chave
 
 ALTERAR RECEITAS NAO ESTA PEGANDO A RECEITA certa
 
+de colocarmos todas as caracteristicas da receita na lista de palavras-chave direto
