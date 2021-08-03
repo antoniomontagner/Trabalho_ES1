@@ -77,11 +77,11 @@ def parametros():
     print("-="*30)
     inserir_ingrediente = True
     lista_ingredientes = []
-    dic = {}
     print('1='*30)
     i = 1
     print('Insira a seguir os ingredientes de sua receita: ')
     while inserir_ingrediente:
+        dic = {}
         ingrediente = input(f"Ingrediente {i}: ")
         dic[ingrediente] = input("Quantia utilizada: ")
         i = i + 1
@@ -90,8 +90,10 @@ def parametros():
             'Deseja inserir mais ingredientes? 1- Sim, 2- Não\nResposta: ')
         if mais_ingredientes == '2':
             inserir_ingrediente = False
-        else:
+        elif mais_ingredientes == '1':
             continue
+        else:
+            print("Valor inválido. ")
         # elif mais_ingredientes != '1':
         #     print('Comando inválido. ')
 
