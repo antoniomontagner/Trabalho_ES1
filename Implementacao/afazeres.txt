@@ -1,4 +1,3 @@
-
 # TODO:
 # C -> menu de acesso às receitas, criando um novo menu no C, podendo ver as receitas e alterá-las/excluí-las
 falta terminar o alterar receita e o admin
@@ -7,7 +6,6 @@ nao ta pedindo os ingredientes, so o numero
 
 # sistema "else" linha 99 dava erro
 
-alterar dados do usuario, se a senha e email tiver errado ainda pede o novo parametro
 
 # "sistema.py", line 117
 
