@@ -1,3 +1,4 @@
+from defs import lista_ingredientes
 from receita import Receita
 
 
@@ -9,7 +10,7 @@ def retorno_print(palavra):
 
 def parametros():
     # nome
-    nome = input("Nome da comida: ")
+    nome = input("Nome da comida: ").upper()
 # palavras_chave
     palavras_chave = []
     while 0 >= len(palavras_chave) or 100 >= len(palavras_chave):
@@ -32,11 +33,15 @@ def parametros():
     while doce_salgado != "A" and doce_salgado != "B":
         doce_salgado = input(f"""
 {"-="*30}
-        O comida é:   
+        A receita é:   
             A - Doce
-            B - Salgado
+            B - Salgada
 {"-="*30}
         Resposta: """).upper()
+    if doce_salgado == 'A':
+        doce_salgado = 'Doce'
+    else:
+        doce_salgado = 'Salgada'
 
 # contem gluten
     gluten = ''
@@ -44,67 +49,74 @@ def parametros():
         gluten = input(f"""
 {"-="*30}
     A receita é:
-        A - Com gluten
-        B - Sem gluten
+        A - Com glúten
+        B - Sem glúten
 {"-="*30}
     Resposta: """).upper()
+
+    if gluten == 'A':
+        gluten = 'Com glúten'
+    else:
+        gluten = 'Sem glúten'
 
     porcoes = ''
     while porcoes != "A" and porcoes != "B":
         porcoes = input(f"""
 {"-="*30}
-    Porção geradas:
+    A receira pode servir:
     
-        A - ate de 2 pessoas
+        A - até 2 pessoas
         B - mais de 2 pessoas 
 {"-="*30}
     Resposta: """).upper()
 
-    modo_preparo = input(" Modo de preparo. ")
+    if porcoes == 'A':
+        porcoes = 'Serve até 2 pessoas'
+    else:
+        porcoes = 'Serve mais de 2 pessoas'
+
+    print("-="*30)
+    inserir_ingrediente = True
+    lista_ingredientes = []
+    dic = {}
+    print('1='*30)
+    i = 1
+    print('Insira a seguir os ingredientes de sua receita: ')
+    while inserir_ingrediente:
+        ingrediente = input(f"Ingrediente {i}: ")
+        dic[ingrediente] = input("Quantia utilizada: ")
+        i = i + 1
+        lista_ingredientes.append(dic)
+        mais_ingredientes = input('Deseja inserir mais ingredientes? 1- Sim, 2- Não\nResposta: ')
+        if mais_ingredientes == '2':
+            inserir_ingrediente = False
+        else:
+            continue
+        # elif mais_ingredientes != '1':
+        #     print('Comando inválido. ')
+
+    modo_preparo = input("Modo de preparo: ")
 
     descricao = input("Descrição da receita: ")
 
-    print("-="*30)
-    while True:
-        try:
-            n_ingredientes = int(input("Número de ingredientes: "))
-            break
-        except ValueError:
-            print("ERRO. Você não digitou um número!")
-
-    return nome, palavras_chave, doce_salgado, gluten, porcoes, n_ingredientes, descricao, modo_preparo
-
-
-# INGREDIENTES   atualmente uma lista de dicionario
-def lista_ingredientes(n_ingredientes):
-    lista = []
-    for i in range(n_ingredientes):
-        dic = {}
-        print('1='*30)
-        nome = input("Nome do ingrediente: ")
-        dic[nome] = input("Quantidade em gramas ou unidades: ")
-        lista.append(dic)
-
-    return lista
+    return nome, palavras_chave, doce_salgado, gluten, porcoes, lista_ingredientes, descricao, modo_preparo
 
 
 def retornar_receita(receita):     # imprimir os dados de uma receita
     nome, doce_salgado, avaliacoes, gluten, porcoes, lista_ingredientes, descricao, modo_preparo = receita.retorno()
 
     print(f"""
-    Nome da receita: {nome}
-                                                Legenda:
-                        {"#"*53}
-        Tipo: {doce_salgado}        |  {"A- Doce":<23} /  {"B- Salgado":<23}|
-        Avaliações: {avaliacoes:.1f}|  {" Avaliação ":<23} /  {" de 0 a 10 ":<23}|
-        Tipo: {gluten}        |  {"A- Com gluten":<23} /  {"B- Sem gluten":<23}|
-        Tipo: {porcoes}        |  {"A- Ate de 2 pessoas":<23} /  {"B- Mais de 2 pessoas":<23}|
-                        {"#"*53}
+    **{nome.upper()}**
+        {"#"*53}
+            Avaliações (0-10): {avaliacoes:.1f}
+            Receita {doce_salgado}
+            Tipo: {gluten}
+            {porcoes}
+        {"#"*53}
 
         Descrição: {descricao}
-
-            Numero de ingredientes: {len(lista_ingredientes)} 
-                    Ingredientes: """)
+        Numero de ingredientes: {len(lista_ingredientes)} 
+            Ingredientes: """)
     for k in lista_ingredientes:
         for c, v in k.items():
             print(f"""          {"Nome:":>48} {c:<15}{" ":8}quantidade: {v}""")

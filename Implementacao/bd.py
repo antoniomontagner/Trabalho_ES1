@@ -45,6 +45,6 @@ def initial_admin(data):
 
 def initial_user(data):
     #r1 = Receita('Bolo de Chocolate','Gabi', ['bolo', 'chocolate', 'doce', 'sobremesa'], 'A', 'A', 'A', 'A', 'Um delicioso bolo de chocolate.', 'Leite, ovos,...')
-    #u1 = User('Gabi', 'abc123', 'gabi@email.com', [r1])
-    # data.lista_users.append(u1)
+    u1 = User('Gabi', 'abc123', 'gabi@email.com', [])
+    data.lista_users.append(u1)
     pass

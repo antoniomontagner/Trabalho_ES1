@@ -1,3 +1,4 @@
+from defs import lista_ingredientes
 from receita import Receita
 from user import User
 from user import Admin
@@ -75,7 +76,7 @@ def menu_user(user_atual, j, data):
 
         if comand == "A":
             #lista = []
-            nome, palavras_chave, doce_salgado, gluten, porcoes, n_ingredientes, descricao, modo_preparo = parametros()  # funcao valores
+            nome, palavras_chave, doce_salgado, gluten, porcoes, lista_ingredientes, descricao, modo_preparo = parametros()  # funcao valores
             # print(j.lista_receitas)
             if len(j.lista_receitas) >= 1:
                 aux = ""
@@ -86,20 +87,12 @@ def menu_user(user_atual, j, data):
                     interface.retorno_print(
                         "\n ~~ Nome já existente, cadastre novamente.  ~~ \n")
                 else:
-                    # funcao que retorna uma lista dos ingredientes que vai usar
-                    ingre = interface.lista_ingredientes(n_ingredientes)
-                    food = Receita(nome, user_atual, palavras_chave, doce_salgado,
-                                   gluten, porcoes, ingre, descricao, modo_preparo)
-                    # lista.append(food)
+                    food = Receita(nome, user_atual, palavras_chave, doce_salgado, porcoes, gluten, lista_ingredientes, descricao, modo_preparo)
                     j.lista_receitas.append(food)
             else:
-                # funcao que retorna uma lista dos ingredientes que vai usar
-                ingre = interface.lista_ingredientes(n_ingredientes)
-                food = Receita(nome, user_atual, palavras_chave, doce_salgado,
-                               gluten, porcoes, ingre, descricao, modo_preparo)
-                # lista.append(food)
+                food = Receita(nome, user_atual, palavras_chave, doce_salgado, porcoes, gluten, lista_ingredientes, descricao, modo_preparo)
                 j.lista_receitas.append(food)
-
+            
         elif comand == "B":
             pesquisa.pesquisar_receita(data)
 

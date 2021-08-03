@@ -131,7 +131,7 @@ def lista_ingredientes(n_ingredientes):      #   INGREDIENTES   atualmente uma l
 def retornar_receita (receita):     # imprimir os dados de uma receita
     nome, doce_salgado, avaliacoes, gluten, porcoes, lista_ingredientes, descricao, modo_preparo =  receita.retorno()
     print(f"""
-    Nome da receita: {nome}
+    ** {nome} **
                                                 Legenda:
                         {"#"*53}
         Tipo: {doce_salgado}        |  {"A- Doce":<23} /  {"B- Salgado":<23}|

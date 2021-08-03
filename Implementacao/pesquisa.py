@@ -9,8 +9,7 @@ def pesquisar_receita(data):
     for i in data.lista_users:
         for j in i.lista_receitas:
             lista_total.append(j)
-
-    print(len(lista_total))
+    # print(len(lista_total))
 
     continuar = True
     while continuar:
@@ -26,9 +25,14 @@ def pesquisar_receita(data):
                         if pesquisa == palavra:  # imprimir a uma tabela sobre a receita
                             interface.retornar_receita(receita)
                             # lista de denuncia
-                            denunciar_avaliar(
-                                receita, data.lista_denuncia)
+                            denunciar_avaliar(receita, data.lista_denuncia)
                             receita_encontrada = 's'
+
+                    if pesquisa == receita.nome:
+                        interface.retornar_receita(receita)
+                        # lista de denuncia
+                        denunciar_avaliar(receita, data.lista_denuncia)
+                        receita_encontrada = 's'
 
                     if receita_encontrada == '':
                         interface.retorno_print("Receita não encontrada. ")
