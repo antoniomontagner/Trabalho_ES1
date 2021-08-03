@@ -10,37 +10,50 @@ def pesquisar_receita(data):
         for j in i.lista_receitas:
             lista_total.append(j)
 
+    print(len(lista_total))
+
     continuar = True
     while continuar:
         pesquisa = interface.menu_pesquisa_receita(lista_total)
+        if pesquisa != 'F':
+            # for receita in lista_total:
+            if len(lista_total) > 0:
+                for receita in lista_total:  # uma lissta da lista
+                    # for receita in receita_encontrada:  # a receita da lita .palavra_chave
+                    # if len(receita.palavras_chave) > 0:
+                    receita_encontrada = ''
+                    for palavra in receita.palavras_chave:
+                        if pesquisa == palavra:  # imprimir a uma tabela sobre a receita
+                            interface.retornar_receita(receita)
+                            # lista de denuncia
+                            denunciar_avaliar(
+                                receita, data.lista_denuncia)
+                            receita_encontrada = 's'
 
-        # for receita in lista_total:
-        for receita in lista_total:  # uma lissta da lista
-            # for receita in receita_encontrada:  # a receita da lita .palavra_chave
-            if len(receita.palavras_chave) > 0:
-                for palavra in receita.palavras_chave:
-                    if pesquisa == palavra:  # imprimir a uma tabela sobre a receita
-                        interface.retornar_receita(receita)
-                        # lista de denuncia
-                        denunciar_avaliar(
-                            receita, data.lista_denuncia)
-                    elif pesquisa == 'F':
+                    if receita_encontrada == '':
+                        interface.retorno_print("Receita não encontrada. ")
                         sair = interface.sem_resposta_continuar_pesquisa()
-                        if sair == '2':
+                        if sair == '1':
                             continuar = False
                             break
+                        elif sair == '2':
+                            pass
                         else:
-                            break
-
-                    else:
-                        sair = interface.sem_resposta_continuar_pesquisa()
-                        if sair == '2':
-                            continuar = False
-                            break
-                        else:
-                            break
+                            interface.retorno_print(" Inválido. ")
+                    # else:
+                    #    interface.retorno_print("Sem receitas no banco. ")
             else:
-                interface.retorno_print("Sem receitas no banco. ")
+                interface.retorno_print(" # Sem receitas no banco.  ")
+
+        elif pesquisa == 'F':
+            sair = interface.sem_resposta_continuar_pesquisa()
+            if sair == '1':
+                continuar = False
+                break
+            elif sair == '2':
+                pass
+            else:
+                interface.retorno_print(" Inválido. ")
 
 
 def avaliar_receita(receita):        # para avaliar uma receita
@@ -133,7 +146,7 @@ def verificar_receitas(nome_usuario, nome_receita, lista_users):
             if i.nome == nome_usuario:
                 for j in i.lista_receitas:
                     if j.nome == nome_receita:
-                        print(f" Receita denunciada: {j}")
+                        interface.retorno_print(f" Receita denunciada: {j}")
     except:
         interface.erro404()
 

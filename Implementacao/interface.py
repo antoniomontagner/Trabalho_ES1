@@ -195,8 +195,7 @@ def invalid_input():
 
 
 def sem_resposta_continuar_pesquisa():
-    print("0 receitas encontradas.")
-    sair = input('Deseja continuar pesquisando? 1- Sim, 2- Não \nResposta: ')
+    sair = input('Deseja sair? 1- Sim, 2- Não \nResposta: ')
     return sair
 
 ## interface usadas no sistema      ##########################
@@ -243,6 +242,18 @@ def menu_alteracao(j):
     return alteracao
 
 
+def menu_alterar_dados_user():
+    alteracao = input("""
+            1 - Alterar nome
+            2 - Alterar senha
+            3 - Alterar email
+            4 - Excluir conta
+
+            0 - Sair
+        """)
+    return alteracao
+
+
 def menu_comando():
     comand = input(f"""
     Sistema de Cadastro:
@@ -281,7 +292,7 @@ def menu_comando_admin():
 
 
 def menu_alteracao_admin():
-    print('\n  Deseja fazer alguma alteracao?')
+    print('\n #### Deseja fazer alguma alteracao? ####')
     comand = input(f"""
                 A - Excluir uma conta.
                 B - Alterar dados de uma conta.
@@ -325,24 +336,50 @@ def menu_lista_user(aux_user, usuario):
 
 def deseja_alterar_receita():
     alterar = input(
-        f'Deseja alterar alguma receita? \n1 - Sim, 2 - Não\nResposta: ')
+        f""" 
+        {'-'*30}
+        Deseja alterar alguma receita? \n1 - Sim, 2 - Não\nResposta: """)
     return alterar
 
 
 def receita_para_alterar():
     rec_escolhida = int(
-        input('Insira o número referente à receita que deseja alterar:\n'))
+        input(f"{'-'*30}\n Insira o número referente à receita que deseja alterar:\n"))
     return rec_escolhida
 
 
 def retornar_lista_receitas(i, receita):
     print(f"""
-    #############\n
+    #############
     # RECEITA {i} #
-    # \n#############\n\n
+    ##############\n
     # Nome: {receita.nome} \n\n
     # Ingredientes: {receita.lista_ingredientes} \n\
     # Modo de preparo: {receita.modo_preparo} \n\n
     # Descricao: {receita.descricao} \n\n
     # Palavras Chave: {receita.palavras_chave}
                             """)
+
+
+def deseja_alterar_receita():
+    alterar = input(f"""
+    {'-'*30}
+        Deseja alterar alguma receita? 
+        1 - Sim, 2 - Não
+        Resposta: """)
+    return alterar
+
+
+def alterar_receita_escolhida():
+    rec_escolhida = int
+    try:
+        rec_escolhida = int(
+            input(f"{'-'*30}\n Insira o número referente à receita que deseja alterar: "))
+    except:
+        print("Valor inválido. ")
+    return rec_escolhida
+
+
+def email_usuario():
+    login = input(" Email do usuário: ")
+    return login

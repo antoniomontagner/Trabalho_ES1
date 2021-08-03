@@ -1,5 +1,7 @@
-TODOS OS PRINTs separados de sistema
-modelo/inferface
+
+# TODO:
+# C -> menu de acesso às receitas, criando um novo menu no C, podendo ver as receitas e alterá-las/excluí-las
+falta terminar o alterar receita e o admin
 
 nao ta pedindo os ingredientes, so o numero
 
@@ -11,10 +13,8 @@ alterar dados do usuario, se a senha e email tiver errado ainda pede o novo para
 
 a palavra pesquisada nunca ta sendo igual à palavra-chave
 
-da para substituir os prints de erro pelo retorno_print()
 
-projeto de arq logica tem que arrumar as classes ( que estao como defs)
+### projeto de arq logica tem que arrumar as classes ( que estao como defs)
 
 ALTERAR RECEITAS NAO ESTA PEGANDO A RECEITA certa
 
-PESQUISA SEM NENHUMA RECEITA REGISTRADA FICA EM LOOP
