@@ -79,21 +79,27 @@ def parametros():
     lista_ingredientes = []
     print('1='*30)
     i = 1
+    mais_ingredientes = ''
     print('Insira a seguir os ingredientes de sua receita: ')
     while inserir_ingrediente:
         dic = {}
-        ingrediente = input(f"Ingrediente {i}: ")
-        dic[ingrediente] = input("Quantia utilizada: ")
-        i = i + 1
-        lista_ingredientes.append(dic)
-        mais_ingredientes = input(
-            'Deseja inserir mais ingredientes? 1- Sim, 2- Não\nResposta: ')
+
+        if mais_ingredientes == '':
+            ingrediente = input(f"Ingrediente {i}: ")
+            dic[ingrediente] = input("Quantia utilizada: ")
+            i = i + 1
+            lista_ingredientes.append(dic)
+            mais_ingredientes = input(
+                'Deseja inserir mais ingredientes? 1- Sim, 2- Não\nResposta: ')
         if mais_ingredientes == '2':
             inserir_ingrediente = False
         elif mais_ingredientes == '1':
+            mais_ingredientes = ''
             continue
         else:
             print("Valor inválido. ")
+            mais_ingredientes = input(
+                'Deseja inserir mais ingredientes? 1- Sim, 2- Não\nResposta: ')
         # elif mais_ingredientes != '1':
         #     print('Comando inválido. ')
 
@@ -108,6 +114,8 @@ def retornar_receita(receita):     # imprimir os dados de uma receita
     nome, doce_salgado, avaliacoes, gluten, porcoes, lista_ingredientes, descricao, modo_preparo = receita.retorno()
 
     print(f"""
+    {"#"*53}
+
     **{nome.upper()}**
         {"#"*53}
             Avaliações (0-10): {avaliacoes:.1f}

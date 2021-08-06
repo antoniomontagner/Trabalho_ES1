@@ -17,35 +17,39 @@ def pesquisar_receita(data):
         if pesquisa != 'F':
             # for receita in lista_total:
             if len(lista_total) > 0:
+                receita_encontrada = False
+                encontro = ''
                 for receita in lista_total:  # uma lissta da lista
                     # for receita in receita_encontrada:  # a receita da lita .palavra_chave
                     # if len(receita.palavras_chave) > 0:
-                    receita_encontrada = ''
+                    # if not(receita_encontrada):
                     for palavra in receita.palavras_chave:
                         if pesquisa == palavra:  # imprimir a uma tabela sobre a receita
                             interface.retornar_receita(receita)
                             # lista de denuncia
                             denunciar_avaliar(receita, data.lista_denuncia)
-                            receita_encontrada = 's'
+                            receita_encontrada = True
+                            encontro = 's'
+                    if encontro == '':
+                        if pesquisa == receita.nome:
+                            interface.retornar_receita(receita)
+                            # lista de denuncia
+                            denunciar_avaliar(receita, data.lista_denuncia)
+                            receita_encontrada = True
+                            encontro = 's'
+                    encontro = ''
 
-                    if pesquisa == receita.nome:
-                        interface.retornar_receita(receita)
-                        # lista de denuncia
-                        denunciar_avaliar(receita, data.lista_denuncia)
-                        receita_encontrada = 's'
+                if not(receita_encontrada):
+                    interface.retorno_print("Receita não encontrada. ")
+                    sair = interface.sem_resposta_continuar_pesquisa()
+                    if sair == '1':
+                        continuar = False
+                        break
+                    elif sair == '2':
+                        pass
+                    else:
+                        interface.retorno_print(" Inválido. ")
 
-                    if receita_encontrada == '':
-                        interface.retorno_print("Receita não encontrada. ")
-                        sair = interface.sem_resposta_continuar_pesquisa()
-                        if sair == '1':
-                            continuar = False
-                            break
-                        elif sair == '2':
-                            pass
-                        else:
-                            interface.retorno_print(" Inválido. ")
-                    # else:
-                    #    interface.retorno_print("Sem receitas no banco. ")
             else:
                 interface.retorno_print(" # Sem receitas no banco.  ")
 
