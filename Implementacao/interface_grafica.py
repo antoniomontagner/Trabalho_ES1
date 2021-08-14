@@ -12,9 +12,6 @@ class Tela():
             if event in (sg.WIN_CLOSED, 'Cancel'):
                 break
 
-
-
-
 layout = [
             [sg.Text("""    
             A - Criar Receita

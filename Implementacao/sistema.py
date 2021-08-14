@@ -5,7 +5,7 @@ from bd import BD
 from interface import email_senha, parametros
 import interface
 import pesquisa
-
+import keyboard as key  # using module keyboard
 
 def menu_cadastro(data):
     user_atual = 0
@@ -154,8 +154,7 @@ def menu_user(user_atual, j, data):
                 else:
                     interface.retorno_print(" Inválido. ")
             else:
-                interface.retorno_print(
-                    "O usuário ainda não possui receitas cadastradas. ")
+                interface.retorno_print("O usuário ainda não possui receitas cadastradas. ")
 
         # login senha, email, alterar e excluir
         elif comand == "D":  # Minha Conta
@@ -219,20 +218,33 @@ def menu_admin(user_atual, i, data):
         if comand == "A":  # Todas as Contas
             aux_user = 1
             aux_adm = 1
-            for usuario in data.lista_users:
-                interface.menu_lista_user(
-                    aux_user, usuario)  # interface grafica
-                aux_user += 1
             for admin in data.lista_admin:
                 interface.menu_lista_admin(aux_adm, admin)  # interface grafica
                 aux_adm += 1
+            for usuario in data.lista_users:
+                interface.menu_lista_user(aux_user, usuario)  # interface grafica
+                aux_user += 1
+
 
             alteracao = interface.menu_alteracao_admin()
-            if alteracao == 'A': ## Excluir uma conta.                
-                login = interface.email_usuario()
-                for usuario_pesquisa in data.lista_users:
-                    if login == usuario_pesquisa.email:
-                        data.lista_users.remove(usuario_pesquisa)
+            if alteracao == 'A': ## Excluir uma conta.
+                continuar = True
+                while continuar:
+                    login = interface.email_usuario()
+                    for admin_pesquisa in data.lista_admin:
+                        if login == admin_pesquisa.email:
+                            data.lista_admin.remove(admin_pesquisa)
+                            interface.retorno_print(f'Usuário {admin_pesquisa.login} excluído com sucesso. ')
+                            continuar = False
+                        else: continue          
+                    for usuario_pesquisa in data.lista_users:
+                        if login == usuario_pesquisa.email:
+                            data.lista_users.remove(usuario_pesquisa)
+                            interface.retorno_print(f'Usuário {usuario_pesquisa.login} excluído com sucesso. ')
+                            continuar = False
+                        else: 
+                            interface.retorno_print("Email não encontrado.")
+                            continuar = False
 
             elif alteracao == 'B': ## Alterar dados de uma conta
                 interface.retorno_print("Alterar dados de uma conta.")

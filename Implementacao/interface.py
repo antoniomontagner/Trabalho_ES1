@@ -442,6 +442,9 @@ def alterar_receita_escolhida():
             print("Insira um número válido. ")
     return int_rec_escolhida
 
+# def menu_sair():
+#     sair = input("S - sair")
+#     return sair
 
 def email_usuario():
     login = input(" Email do usuário: ")
