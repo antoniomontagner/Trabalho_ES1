@@ -170,8 +170,6 @@ def menu_user(user_atual, j, data):
                                 usuarios.login = novo_nome
                             else:
                                 interface.retorno_print(" Senha inválida.")
-                        # else:
-                        #    interface.retorno_print(" Email inválido.")
 
                 elif alteracao == '2':
                     login, senha, novo_senha = interface.login_senha_novo_nome()
@@ -181,8 +179,6 @@ def menu_user(user_atual, j, data):
                                 usuarios.senha = novo_senha
                             else:
                                 interface.retorno_print(" Senha inválida.")
-                        # else:
-                        #    interface.retorno_print(" Email inválido.")
 
                 elif alteracao == '3':
                     login, senha, novo_email = interface.login_senha_novo_nome()
@@ -192,8 +188,6 @@ def menu_user(user_atual, j, data):
                                 usuarios.email = novo_email
                             else:
                                 interface.retorno_print(" Senha inválida.")
-                        # else:
-                        #    interface.retorno_print(" Email inválido.")
 
                 elif alteracao == '4':
                     login, senha = interface.email_senha()
@@ -206,8 +200,6 @@ def menu_user(user_atual, j, data):
                                 break
                             else:
                                 interface.retorno_print(" Senha inválida.")
-                        # else:
-                        #    interface.retorno_print(" Email inválido.")
 
                 elif alteracao == '0':
                     alterar_dados = False
