@@ -106,19 +106,53 @@ def menu_user(user_atual, j, data):
                     cont += 1
                 alterar = interface.deseja_alterar_receita()
                 if alterar == '1':
-                    rec_escolhida = interface.alterar_receita_escolhida()
-                    if (rec_escolhida) <= len(j.lista_receitas):
-                        i = rec_escolhida - 1
+                    numero_receita = interface.alterar_receita_escolhida()
+                    if (numero_receita) <= len(j.lista_receitas):
+                        i = numero_receita - 1
                         rec_escolhida = j.lista_receitas[i]
-                        # rec_escolhida é um objeto
-                        interface.retorno_print(rec_escolhida)
+                        alterar_dados = True
+                        while alterar_dados:
+                            alteracao = interface.menu_alterar_receita()
 
-                        # alterar dados da receita ##########################
+                            if alteracao == '1':
+                                nome = interface.input_nome_receita()
+                                rec_escolhida.nome = nome
+                            elif alteracao == '2':
+                                palavras_chave = interface.input_palavra_chave()
+                                rec_escolhida.palavras_chave = palavras_chave
+                            elif alteracao == '3':
+                                doce_salgado = interface.input_doce_salgado()
+                                rec_escolhida.doce_salgado = doce_salgado
+                            elif alteracao == '4':
+                                porcoes = interface.input_porcoes()
+                                rec_escolhida.porcoes = porcoes
+                            elif alteracao == '5':
+                                gluten = interface.input_gluten()
+                                rec_escolhida.gluten = gluten
+                            elif alteracao == '6':
+                                lista_ingredientes = interface.input_lista_ingredientes()
+                                rec_escolhida.lista_ingredientes = lista_ingredientes
+                            elif alteracao == '7':
+                                descricao = interface.input_descricao()
+                                rec_escolhida.descricao = descricao
+                            elif alteracao == '8':
+                                modo_preparo = interface.input_modo_preparo()
+                                rec_escolhida.modo_preparo = modo_preparo
+                            elif alteracao == '9':
+                                j.lista_receitas.pop(i)
+                                alterar_dados = False
+                            elif alteracao == '0':
+                                alterar_dados = False
+                            else:
+                                interface.retorno_print("Valor inválido. ")
 
                     else:
                         interface.retorno_print("Inválido. ")
-                else:
+
+                elif alterar == '2':
                     pass
+                else:
+                    interface.retorno_print(" Inválido. ")
             else:
                 interface.retorno_print(
                     "O usuário ainda não possui receitas cadastradas. ")
@@ -127,7 +161,7 @@ def menu_user(user_atual, j, data):
         elif comand == "D":
             alterar_dados = True
             while alterar_dados:
-                alteracao = interface.menu_alteracao(j)
+                alteracao = interface.menu_alteracao_user(j)
                 if alteracao == '1':
                     login, senha, novo_nome = interface.login_senha_novo_nome()
                     for usuarios in data.lista_users:
@@ -136,8 +170,8 @@ def menu_user(user_atual, j, data):
                                 usuarios.login = novo_nome
                             else:
                                 interface.retorno_print(" Senha inválida.")
-                        else:
-                            interface.retorno_print(" Email inválido.")
+                        # else:
+                        #    interface.retorno_print(" Email inválido.")
 
                 elif alteracao == '2':
                     login, senha, novo_senha = interface.login_senha_novo_nome()
@@ -147,8 +181,8 @@ def menu_user(user_atual, j, data):
                                 usuarios.senha = novo_senha
                             else:
                                 interface.retorno_print(" Senha inválida.")
-                        else:
-                            interface.retorno_print(" Email inválido.")
+                        # else:
+                        #    interface.retorno_print(" Email inválido.")
 
                 elif alteracao == '3':
                     login, senha, novo_email = interface.login_senha_novo_nome()
@@ -158,8 +192,8 @@ def menu_user(user_atual, j, data):
                                 usuarios.email = novo_email
                             else:
                                 interface.retorno_print(" Senha inválida.")
-                        else:
-                            interface.retorno_print(" Email inválido.")
+                        # else:
+                        #    interface.retorno_print(" Email inválido.")
 
                 elif alteracao == '4':
                     login, senha = interface.email_senha()
@@ -172,8 +206,8 @@ def menu_user(user_atual, j, data):
                                 break
                             else:
                                 interface.retorno_print(" Senha inválida.")
-                        else:
-                            interface.retorno_print(" Email inválido.")
+                        # else:
+                        #    interface.retorno_print(" Email inválido.")
 
                 elif alteracao == '0':
                     alterar_dados = False
@@ -205,27 +239,29 @@ def menu_admin(user_atual, i, data):
             if alteracao == 'A':
                 login = interface.email_usuario()
                 for usuario_pesquisa in data.lista_users:
-                    if login == usuario_pesquisa.login:
-                        data.lista_users.pop(usuario_pesquisa)
+                    if login == usuario_pesquisa.email:
+                        data.lista_users.remove(usuario_pesquisa)
 
             elif alteracao == 'B':
                 interface.retorno_print("Alterar dados de uma conta.")
 
                 alterar_dados = True
                 while alterar_dados:
-                    alteracao = interface.menu_alterar_dados_user()
-                    if alteracao == '1':
+                    alteracao_user = interface.menu_alterar_dados_user()
+                    if alteracao_user == '1':
                         login, senha, novo_nome = interface.login_senha_novo_nome()
                         for usuarios in data.lista_users:
                             if login == usuarios.email:
                                 if senha == usuarios.senha:
                                     usuarios.login = novo_nome
+                                    print(usuarios.login)
+                                    print(usuarios)
                                 else:
                                     interface.retorno_print(" Senha inválida.")
-                            else:
-                                interface.retorno_print(" Email inválido.")
+                            # else:
+                            #    interface.retorno_print(" Email inválido.")
 
-                    elif alteracao == '2':
+                    elif alteracao_user == '2':
                         login, senha, novo_senha = interface.login_senha_novo_nome()
                         for usuarios in data.lista_users:
                             if login == usuarios.email:
@@ -236,7 +272,7 @@ def menu_admin(user_atual, i, data):
                             else:
                                 interface.retorno_print(" Email inválido.")
 
-                    elif alteracao == '3':
+                    elif alteracao_user == '3':
                         login, senha, novo_email = interface.login_senha_novo_nome()
                         for usuarios in data.lista_users:
                             if login == usuarios.email:
@@ -247,7 +283,7 @@ def menu_admin(user_atual, i, data):
                             else:
                                 interface.retorno_print(" Email inválido.")
 
-                    elif alteracao == '4':
+                    elif alteracao_user == '4':
                         login, senha = interface.email_senha()
                         for usuarios in data.lista_users:
                             if login == usuarios.email:
@@ -261,7 +297,7 @@ def menu_admin(user_atual, i, data):
                             else:
                                 interface.retorno_print(" Email inválido.")
 
-                    elif alteracao == '0':
+                    elif alteracao_user == '0':
                         alterar_dados = False
                     else:
                         interface.invalid_input()

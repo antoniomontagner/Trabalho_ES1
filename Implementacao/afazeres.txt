@@ -1,19 +1,13 @@
 # TODO:
-# C -> menu de acesso às receitas, criando um novo menu no C, podendo ver as receitas e alterá-las/excluí-las
-falta terminar o alterar receita e o admin
+# Cadastro Usuario/admin
+# Acessar conta
+# Alterar dados da conta usuario e adm
+# Alterar dados de uma receita
+# Avaliar/denunciar receita
+# Deletar uma receita
 
-nao ta pedindo os ingredientes, so o numero
-
-# sistema "else" linha 99 dava erro
 
 
-# "sistema.py", line 117
-
-a palavra pesquisada nunca ta sendo igual à palavra-chave
-
+# alterar dados conta pelo adm so funciona com contas de usuarios
 
 ### projeto de arq logica tem que arrumar as classes ( que estao como defs)
-
-ALTERAR RECEITAS NAO ESTA PEGANDO A RECEITA certa
-
-de colocarmos todas as caracteristicas da receita na lista de palavras-chave direto

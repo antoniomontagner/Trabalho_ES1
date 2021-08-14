@@ -92,13 +92,17 @@ def denunciar_receita(receita, lista_denuncia: list):
 
 
 def denunciar_avaliar(receita, lista_denuncia):
+    usados = []
     while True:
         comando = interface.menu_comando_avaliar()
-        if comando == '1':
+        if comando == '1' and (comando not in usados):
             avaliar_receita(receita)
-        elif comando == '2':
+            usados.append('1')
+        elif comando == '2' and (comando not in usados):
             denunciar_receita(receita, lista_denuncia)
+            usados.append('2')
         elif comando == '0':
+            usados = []
             break
         else:
             interface.invalid_input()

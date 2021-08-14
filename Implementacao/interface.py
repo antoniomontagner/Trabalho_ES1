@@ -6,11 +6,15 @@ def retorno_print(palavra):
 
 # parametros para criar receita #####
 
+# comeco das funcoes para input de parametros
 
-def parametros():
-    # nome
+
+def input_nome_receita():
     nome = input("Nome da comida: ").upper()
-# palavras_chave
+    return nome
+
+
+def input_palavra_chave():
     palavras_chave = []
     while 0 >= len(palavras_chave) or 100 >= len(palavras_chave):
         comand = input(f"""
@@ -26,8 +30,10 @@ def parametros():
             break
         else:
             print("Input inválido. ")
+    return palavras_chave
 
-# doce ou salgado
+
+def input_doce_salgado():
     doce_salgado = ''
     while doce_salgado != "A" and doce_salgado != "B":
         doce_salgado = input(f"""
@@ -41,8 +47,10 @@ def parametros():
         doce_salgado = 'Doce'
     else:
         doce_salgado = 'Salgada'
+    return doce_salgado
 
-# contem gluten
+
+def input_gluten():
     gluten = ''
     while gluten != "A" and gluten != "B":
         gluten = input(f"""
@@ -57,7 +65,10 @@ def parametros():
         gluten = 'Com glúten'
     else:
         gluten = 'Sem glúten'
+    return gluten
 
+
+def input_porcoes():
     porcoes = ''
     while porcoes != "A" and porcoes != "B":
         porcoes = input(f"""
@@ -73,7 +84,10 @@ def parametros():
         porcoes = 'Serve até 2 pessoas'
     else:
         porcoes = 'Serve mais de 2 pessoas'
+    return porcoes
 
+
+def input_lista_ingredientes():
     print("-="*30)
     inserir_ingrediente = True
     lista_ingredientes = []
@@ -100,12 +114,36 @@ def parametros():
             print("Valor inválido. ")
             mais_ingredientes = input(
                 'Deseja inserir mais ingredientes? 1- Sim, 2- Não\nResposta: ')
-        # elif mais_ingredientes != '1':
-        #     print('Comando inválido. ')
+    return lista_ingredientes
 
+
+def input_modo_preparo():
     modo_preparo = input("Modo de preparo: ")
+    return modo_preparo
 
+
+def input_descricao():
     descricao = input("Descrição da receita: ")
+    return descricao
+# end funcoes para input de parametros
+
+
+def parametros():
+    nome = input_nome_receita()
+
+    palavras_chave = input_palavra_chave()
+
+    doce_salgado = input_doce_salgado()
+
+    gluten = input_gluten()
+
+    porcoes = input_porcoes()
+
+    lista_ingredientes = input_lista_ingredientes()
+
+    modo_preparo = input_modo_preparo()
+
+    descricao = input_descricao()
 
     return nome, palavras_chave, doce_salgado, gluten, porcoes, lista_ingredientes, descricao, modo_preparo
 
@@ -220,9 +258,8 @@ def sem_resposta_continuar_pesquisa():
     sair = input('Deseja sair? 1- Sim, 2- Não \nResposta: ')
     return sair
 
+
 ## interface usadas no sistema      ##########################
-
-
 def login_senha_novo_nome():
     login = input(" Email de acesso: ")
     senha = input(" Senha de acesso: ")
@@ -246,7 +283,7 @@ def email_senha():
     return email, senha
 
 
-def menu_alteracao(j):
+def menu_alteracao_user(j):
     print(f"""
     {'-'*30}
         Nome:   {j.login}
@@ -345,13 +382,13 @@ def interface_menu_user():
 
 
 def menu_lista_admin(aux_adm, admin):
-    print("ADMIN -="*30)
+    print(f"USER {'-='*30} ")
     print(f'Admin {aux_adm}, Login : {admin.login}, Email : {admin.email}, Senha : {admin.senha}, Pin : {admin.senha_admin}')
     print("-="*30)
 
 
 def menu_lista_user(aux_user, usuario):
-    print("USERS -="*30)
+    print(f"USER {'-='*30} ")
     print(
         f'Usuario {aux_user}, Login : {usuario.login}, Email : {usuario.email}, Senha : {usuario.senha}')
 
@@ -393,15 +430,38 @@ def deseja_alterar_receita():
 
 
 def alterar_receita_escolhida():
-    rec_escolhida = int
-    try:
-        rec_escolhida = int(
-            input(f"{'-'*30}\n Insira o número referente à receita que deseja alterar: "))
-    except:
-        print("Valor inválido. ")
-    return rec_escolhida
+    int_rec_escolhida = ''
+    while int_rec_escolhida != int:
+        rec_escolhida = input(
+            f"{'-'*30}\n Insira o número referente à receita que deseja alterar: ")
+
+        try:
+            int_rec_escolhida = int(rec_escolhida)
+            break
+        except:
+            print("Insira um número válido. ")
+    return int_rec_escolhida
 
 
 def email_usuario():
     login = input(" Email do usuário: ")
     return login
+
+
+def menu_alterar_receita():
+    #nome, user_atual, palavras_chave, doce_salgado,
+    # porcoes, gluten, lista_ingredientes, descricao, modo_preparo)
+    alteracao = input("""
+        1 - Alterar nome
+        2 - Alterar palavras chave
+        3 - Alterar se é doce ou salgado
+        4 - Alterar número de porcoes
+        5 - Alterar se tem gluten
+        6 - Alterar a lista de ingredientes
+        7 - Alterar a descrição
+        8 - Alterar o modo de preparo
+        9 - Deletar a receita
+        
+        0 - Sair
+    """)
+    return alteracao
