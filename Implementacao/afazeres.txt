@@ -5,7 +5,7 @@
 # Alterar dados de uma receita
 # Avaliar/denunciar receita
 # Deletar uma receita
-
+a
 
 
 # alterar dados conta pelo adm so funciona com contas de usuarios
