@@ -37,7 +37,7 @@ class BD:
 def initial_admin(data):
     a1 = Admin('admin_1', 'abc123', 'admin_1@email.com', '1111')
     a2 = Admin('admin_2', 'abc123', 'admin_2@email.com', '2222')
-    a3 = Admin('admin_3', '123', 'asd123', '123')
+    a3 = Admin('admin_3', '123', '123', '123')
     data.lista_admin.append(a1)
     data.lista_admin.append(a2)
     data.lista_admin.append(a3)

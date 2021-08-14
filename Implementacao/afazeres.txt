@@ -1,13 +1,10 @@
 # TODO:
-# Cadastro Usuario/admin
-# Acessar conta
-# Alterar dados da conta usuario e adm
-# Alterar dados de uma receita
-# Avaliar/denunciar receita
-# Deletar uma receita
-a
+# Cadastro Usuario/admin    - falta cadastro adm
+# Acessar conta - feito
+# Alterar dados da conta usuario e adm  - falta alterar dados adm
+# Alterar dados de uma receita  - feito
+# Avaliar/denunciar receita     - 
+# Deletar uma receita   - feito
 
-
-# alterar dados conta pelo adm so funciona com contas de usuarios
 
 ### projeto de arq logica tem que arrumar as classes ( que estao como defs)
