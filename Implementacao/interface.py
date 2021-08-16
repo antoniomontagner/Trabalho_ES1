@@ -176,7 +176,7 @@ def retornar_receita(receita):     # imprimir os dados de uma receita
 ########## interface pesquisa       ##############################
 def menu_nome_receita():
     nome_usuario = input(" Nome do usuario que pretende acessar: ")
-    nome_receita = input(" Nome da receita: ")
+    nome_receita = input(" Nome da receita: ").upper()
     return nome_usuario, nome_receita
 
 
@@ -356,7 +356,9 @@ def menu_alteracao_admin():
                 A - Excluir uma conta.
                 B - Alterar dados de uma conta.
                 C - Adicionar uma conta admnistrativa.
-                D - Nao, sair.
+                D - Alterar dados de uma conta admnistrativa.
+
+                E - Nao, sair.
                 {"-="*30}
                 Resposta: """).upper()
     return comand
@@ -446,6 +448,7 @@ def alterar_receita_escolhida():
 #     sair = input("S - sair")
 #     return sair
 
+
 def email_usuario():
     login = input(" Email do usuário: ")
     return login
@@ -469,8 +472,9 @@ def menu_alterar_receita():
     """)
     return alteracao
 
+
 def menu_novo_admin():
-    print("Adicionar uma conta admnistrativa.")  
+    print("Adicionar uma conta admnistrativa.")
     login = input("Insira o nome de usuário: ")
     email = input("Email do novo administrador: ")
     senha = input("Senha: ")
