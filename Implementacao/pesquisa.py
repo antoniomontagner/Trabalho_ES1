@@ -173,3 +173,10 @@ def deletar_receitas(nome_usuario, nome_receita, lista_users):
                         i.lista_receitas.pop(j)
     except:
         interface.erro404()
+
+def mostrar_todas_receitas(lista_users):
+    lista_total = []  # era uma lista de listas das receitas dos usuarios agora é uma lista com apenas receitas
+    for i in lista_users:
+        for j in i.lista_receitas:
+            lista_total.append(j)
+    return lista_total

@@ -59,7 +59,6 @@ def menu_cadastro(data):
 
         elif comand == "C":
             return 'exit'
-            break
 
         else:
             pass
@@ -230,19 +229,22 @@ def menu_admin(user_atual, i, data):
             if alteracao == 'A': ## Excluir uma conta.
                 continuar = True
                 while continuar:
+                    email_encontrado = False
                     login = interface.email_usuario()
                     for admin_pesquisa in data.lista_admin:
                         if login == admin_pesquisa.email:
                             data.lista_admin.remove(admin_pesquisa)
                             interface.retorno_print(f'Usuário {admin_pesquisa.login} excluído com sucesso. ')
+                            email_encontrado = True
                             continuar = False
                         else: continue          
                     for usuario_pesquisa in data.lista_users:
                         if login == usuario_pesquisa.email:
                             data.lista_users.remove(usuario_pesquisa)
                             interface.retorno_print(f'Usuário {usuario_pesquisa.login} excluído com sucesso. ')
+                            email_encontrado = True
                             continuar = False
-                        else: 
+                        elif email_encontrado == False: 
                             interface.retorno_print("Email não encontrado.")
                             continuar = False
 
@@ -306,10 +308,21 @@ def menu_admin(user_atual, i, data):
                         interface.invalid_input()
 
             elif alteracao == 'C': ## Adicionar uma conta admnistrativa
-                interface.retorno_print("Adicionar uma conta admnistrativa.")  
-            elif alteracao == 'D': 
+                login, email, senha, pin = interface.menu_novo_admin()
+                nome_existe = ""
+                for admin in data.lista_admin:
+                    if admin.email == email:
+                        nome_existe = "S"
+                if nome_existe == "S":
+                    interface.retorno_print("Admin já existente. ")
+                else:
+                    x = Admin(login, senha, email, pin)
+                    data.lista_admin.append(x)
+                    interface.retorno_print("O novo administrador está cadastrado no sistema.")
+                interface.retorno_print("-="*30)
 
-                                interface.retorno_print("Sair")
+            elif alteracao == 'D': 
+                return 'exit'
             else:
                 pass
 
@@ -318,11 +331,9 @@ def menu_admin(user_atual, i, data):
         {'-=' *30}
                 Pesquisa de Receitas
         {'-='*30}""")
-            login=interface.email_usuario()
-            for usuario_pesquisa in data.lista_users:
-                if login == usuario_pesquisa.login:
-                    interface.retorno_print(
-                        f"Login : {usuario_pesquisa.login}, Email : {usuario_pesquisa.email}, Senha : {usuario_pesquisa.senha}")
+            lista_total = pesquisa.mostrar_todas_receitas(data.lista_users)
+            for i in lista_total:
+                interface.retornar_lista_receitas(i, lista_total[i])
 
         elif comand == "C":  # Denuncias
             interface.retorno_print(f"""

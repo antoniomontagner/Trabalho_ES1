@@ -382,7 +382,7 @@ def interface_menu_user():
 
 
 def menu_lista_admin(aux_adm, admin):
-    print(f"USER {'-='*30} ")
+    print(f"ADMIN {'-='*30} ")
     print(f'Admin {aux_adm}, Login : {admin.login}, Email : {admin.email}, Senha : {admin.senha}, Pin : {admin.senha_admin}')
     print("-="*30)
 
@@ -468,3 +468,11 @@ def menu_alterar_receita():
         0 - Sair
     """)
     return alteracao
+
+def menu_novo_admin():
+    print("Adicionar uma conta admnistrativa.")  
+    login = input("Insira o nome de usuário: ")
+    email = input("Email do novo administrador: ")
+    senha = input("Senha: ")
+    pin = input("Pin de segurança: ")
+    return login, email, senha, pin
