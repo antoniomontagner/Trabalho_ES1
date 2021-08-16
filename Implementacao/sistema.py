@@ -5,7 +5,8 @@ from bd import BD
 from interface import email_senha, parametros
 import interface
 import pesquisa
-import keyboard as key  # using module keyboard
+# import keyboard as key  # using module keyboard
+
 
 def menu_cadastro(data):
     user_atual = 0
@@ -153,7 +154,8 @@ def menu_user(user_atual, j, data):
                 else:
                     interface.retorno_print(" Inválido. ")
             else:
-                interface.retorno_print("O usuário ainda não possui receitas cadastradas. ")
+                interface.retorno_print(
+                    "O usuário ainda não possui receitas cadastradas. ")
 
         # login senha, email, alterar e excluir
         elif comand == "D":  # Minha Conta
@@ -221,12 +223,12 @@ def menu_admin(user_atual, i, data):
                 interface.menu_lista_admin(aux_adm, admin)  # interface grafica
                 aux_adm += 1
             for usuario in data.lista_users:
-                interface.menu_lista_user(aux_user, usuario)  # interface grafica
+                interface.menu_lista_user(
+                    aux_user, usuario)  # interface grafica
                 aux_user += 1
 
-
             alteracao = interface.menu_alteracao_admin()
-            if alteracao == 'A': ## Excluir uma conta.
+            if alteracao == 'A':  # Excluir uma conta.
                 continuar = True
                 while continuar:
                     email_encontrado = False
@@ -234,21 +236,24 @@ def menu_admin(user_atual, i, data):
                     for admin_pesquisa in data.lista_admin:
                         if login == admin_pesquisa.email:
                             data.lista_admin.remove(admin_pesquisa)
-                            interface.retorno_print(f'Usuário {admin_pesquisa.login} excluído com sucesso. ')
+                            interface.retorno_print(
+                                f'Usuário {admin_pesquisa.login} excluído com sucesso. ')
                             email_encontrado = True
                             continuar = False
-                        else: continue          
+                        else:
+                            continue
                     for usuario_pesquisa in data.lista_users:
                         if login == usuario_pesquisa.email:
                             data.lista_users.remove(usuario_pesquisa)
-                            interface.retorno_print(f'Usuário {usuario_pesquisa.login} excluído com sucesso. ')
+                            interface.retorno_print(
+                                f'Usuário {usuario_pesquisa.login} excluído com sucesso. ')
                             email_encontrado = True
                             continuar = False
-                        elif email_encontrado == False: 
+                        elif email_encontrado == False:
                             interface.retorno_print("Email não encontrado.")
                             continuar = False
 
-            elif alteracao == 'B': ## Alterar dados de uma conta
+            elif alteracao == 'B':  # Alterar dados de uma conta
                 interface.retorno_print("Alterar dados de uma conta.")
                 alterar_dados = True
                 while alterar_dados:
@@ -307,7 +312,7 @@ def menu_admin(user_atual, i, data):
                     else:
                         interface.invalid_input()
 
-            elif alteracao == 'C': ## Adicionar uma conta admnistrativa
+            elif alteracao == 'C':  # Adicionar uma conta admnistrativa
                 login, email, senha, pin = interface.menu_novo_admin()
                 nome_existe = ""
                 for admin in data.lista_admin:
@@ -318,11 +323,14 @@ def menu_admin(user_atual, i, data):
                 else:
                     x = Admin(login, senha, email, pin)
                     data.lista_admin.append(x)
-                    interface.retorno_print("O novo administrador está cadastrado no sistema.")
+                    interface.retorno_print(
+                        "O novo administrador está cadastrado no sistema.")
                 interface.retorno_print("-="*30)
 
-            elif alteracao == 'D': 
-                return 'exit'
+            elif alteracao == 'D':
+                pass
+            elif alteracao == 'E':
+                continuar = False
             else:
                 pass
 
@@ -345,7 +353,7 @@ def menu_admin(user_atual, i, data):
             interface.retorno_print("-="*30)
 
         elif comand == "D":  # Sair
-            user_atual=0
+            user_atual = 0
 
         else:
             interface.invalid_input()

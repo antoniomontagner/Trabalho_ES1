@@ -37,14 +37,15 @@ class BD:
 def initial_admin(data):
     a1 = Admin('admin_1', 'abc123', 'admin_1@email.com', '1111')
     a2 = Admin('admin_2', 'abc123', 'admin_2@email.com', '2222')
-    a3 = Admin('admin_3', 'abc123', 'admin_2@email.com', '3333')
+    a3 = Admin('admin_3', 'asd', 'asd', 'asd')
     data.lista_admin.append(a1)
     data.lista_admin.append(a2)
     data.lista_admin.append(a3)
 
 
 def initial_user(data):
-    #r1 = Receita('Bolo de Chocolate','Gabi', ['bolo', 'chocolate', 'doce', 'sobremesa'], 'A', 'A', 'A', 'A', 'Um delicioso bolo de chocolate.', 'Leite, ovos,...')
-    u1 = User('Gabi', 'abc123', 'gabi@email.com', [])
+    r1 = Receita('BOLO', 'a', ['BOLO', 'DOCE'], 'A', 'A', 'A', [
+                 {'jaca': '2'}], 'Um delicioso bolo de chocolate.', 'Leite, ovos,...')
+    u1 = User('a', 'a', 'a', [r1])
     data.lista_users.append(u1)
     pass
