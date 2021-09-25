@@ -1,15 +1,12 @@
 # TODO:
+mapeamento
 
-# Alterar dados da conta usuario e adm  - falta alterar dados adm (esqueci desse)  - 
-# A pesquisa da parte dos admins também é sobre receitas, estou tentando retornar toda a lista de receitas mas não consegui. O mesmo será aplicado aos usuários antes de pesquisar em ordem das medias de avaliação
-# Denúncia - parte admin não chequei se funciona
+#################### 
+# diagramas de estados
 
+# mapeamento OO (com PK e FK) 
 
-# DONE:
-# Cadastro Usuario/admin
-# Acessar conta - feito
-# Alterar dados de uma receita  - feito
-# Deletar uma receita   - feito
-# Avaliar/denunciar receita   
+# singleton Sistema
+# builder  Receita
 
-### projeto de arq logica tem que arrumar as classes ( que estao como defs)
+# singleton interface

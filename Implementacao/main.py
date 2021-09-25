@@ -1,10 +1,6 @@
-import sistema as s
+import sistema
 from bd import BD, initial_admin, initial_user
-
-from receita import Receita
-from user import User
-from user import Admin
-# from interface import nomequant -> lista_ingredientes
+import interface
 
 
 def main():
@@ -19,6 +15,11 @@ def main():
     sair = False
 
     while user_atual != 'exit':
+        SisInterface = interface.Interface()
+        s = sistema.Sistema(SisInterface, 1)
+        # s2 = sistema.Sistema(SisInterface, 2)  # Singleton test
+        # if s == s2:
+        #    print(f"Singleton, n de verificacao s1:{s.n} s2: {s2.n}")
         user_atual = s.menu_cadastro(data)
         for i in data.lista_admin:
             if user_atual == i.login:
